@@ -83,7 +83,7 @@ export default function EditorPage() {
       <section className="editor-shell">
         <header className="editor-header">
           <Link className="editor-home-link" href="/">
-            데모로 돌아가기
+            게임 선택으로
           </Link>
           <div className="brand-lockup editor-brand">
             <Image src="/campusdrop_logo.png" alt="Campus Drop" width={42} height={42} priority />
