@@ -10,6 +10,20 @@ VITE_CAMPUSDROP_API_BASE_URL=http://192.168.x.x:8080
 
 휴대폰 테스트에서는 Mac과 휴대폰을 같은 Wi-Fi에 연결하고, Mac의 실제 내부 IP를 사용한다. 휴대폰의 `localhost`는 휴대폰 자신을 가리키므로 백엔드가 있는 Mac에 연결되지 않는다. 서버 방화벽과 백엔드 CORS 설정도 개발 웹 앱의 origin을 허용해야 한다. CORS는 백엔드 책임이며 이 웹 프로젝트에서 우회하거나 비활성화하지 않는다.
 
+현재 LAN/Vite 조합은 백엔드의 `local` 프로필을 다음처럼 시작한다. 이 값은 API 주소가 아니라 **브라우저가 실제로 로드된 Vite origin**이다.
+
+```bash
+CORS_ALLOWED_ORIGINS=http://172.19.24.190:5173 ./gradlew :apps:api-server:bootRun
+```
+
+여러 개발 origin이 필요하면 쉼표로 명시한다.
+
+```bash
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173,http://172.19.24.190:5173 ./gradlew :apps:api-server:bootRun
+```
+
+변수 없이 `local` 프로필을 실행하면 `http://localhost:5173`과 `http://127.0.0.1:5173`만 허용된다. 실행 중인 서버의 환경변수는 갱신되지 않으므로 LAN origin을 추가하거나 바꾼 뒤에는 백엔드를 다시 시작해야 한다. 스테이징·운영에서는 신뢰하는 정확한 HTTPS origin만 배포 환경변수로 허용하고, `*` 와일드카드, 사설망 패턴, 쿠키 credential 허용을 설정하지 않는다.
+
 ## API Base URL 규칙
 
 - 클라이언트의 유일한 base URL 입력은 `VITE_CAMPUSDROP_API_BASE_URL`이다.

@@ -103,15 +103,28 @@ async function parseEnvelope(response: Response): Promise<ApiEnvelope<unknown> |
   }
 }
 
-function buildRequestUrl(path: string): URL {
-  if (!path.startsWith("/")) {
+export function buildApiRequestUrl(path: string, apiBaseUrl: string): URL {
+  if (!path.startsWith("/") || path.startsWith("//")) {
     throw new ApiClientError(
       "configuration",
-      "API request paths must start with '/'.",
+      "API request paths must start with one '/' and cannot specify another origin.",
     );
   }
 
-  return new URL(path, getApiBaseUrl());
+  const baseUrl = new URL(apiBaseUrl);
+  const requestUrl = new URL(path, baseUrl);
+  if (requestUrl.origin !== baseUrl.origin) {
+    throw new ApiClientError(
+      "configuration",
+      "API request paths must resolve to the configured API origin.",
+    );
+  }
+
+  return requestUrl;
+}
+
+function buildRequestUrl(path: string): URL {
+  return buildApiRequestUrl(path, getApiBaseUrl());
 }
 
 export function createApiClient(options: ApiClientOptions = {}) {
