@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 
 type Scene = "entry" | "incident" | "mission" | "camera" | "arrival" | "witness" | "witnessOrder" | "imagination" | "emptyRecord" | "firstContact";
-type MessageStep = "hidden" | "first";
 type DropLinkMode = "case" | "clue" | "arrange" | "chapter3" | "chapter4" | "chapter5";
 type GiraffeQuestionKey = "origin" | "star" | "fade";
 type DirectionKey = "N" | "NE" | "E" | "SE" | "S" | "SW" | "W" | "NW";
@@ -92,23 +91,20 @@ const witnesses = [
 ];
 const correctWitnessOrder = ["C", "B", "A"];
 const dropLinkBriefings = [
-  "사용자 인증 완료. 임시 현장 조사원으로 등록합니다. 사건 번호 CD-SJ-01, 사건명 시계탑 대형 생물 목격 사건.",
-  "세종대학교에는 오래된 소문이 하나 있습니다. 시계탑 꼭대기에는 기린이 산다. 본부는 목격 신고 7건을 근거로 현장 조사가 필요하다고 판단했습니다.",
+  "사용자 인증 완료.\n임시 현장 조사원으로 등록합니다.",
+  "사건 번호: CD-SJ-01,\n사건명: 시계탑 대형 생물 목격 사건.",
+  "최근 미확인 생물체에 대한\n신고가 지속적으로 들어오고 있습니다.",
+  "현장 조사를 진행하고,\n신고의 진실 유무를 확인하세요.",
 ];
 const clueTransmissionBriefings = [
-  "[DROPLINK] 증거물 전송이 완료되었습니다.",
-  "[DROPLINK] 확보된 노란 털의 생물학적 분류를 확인할 수 없습니다.",
-  "[DROPLINK] 시계탑 주변에서 접수된 과거 기록을 조회합니다.",
-  "[DROPLINK] 기록 저장소 분석 중...",
-  "[DROPLINK] 관련 가능성이 있는 기록 세 건을 확인했습니다.",
-  "[DROPLINK] 기록의 작성 시점 정보가 일부 손상되어 있습니다.",
-  "[운영본부] 세 기록의 형태와 내용을 비교해 시간적 순서를 복원하십시오.",
-  "[DROPLINK] 에너지 반응이 강한 지점 3곳을 지도상에 표시했습니다. 각 목적지 반경 10m 안에 진입해 현장 자료 이미지를 확보하세요.",
+  "표본 분석을 진행한 결과,\n알려진 어떤 동물과도 일치하지 않습니다.",
+  "분류를 확정하려면 추가 조사가 필요합니다.",
+  "증거물과 유사한 에너지가\n감지된 위치를 지도에 표시하겠습니다.",
+  "표시된 지점을 조사해 보세요.",
 ];
 const witnessArrangeBriefings = [
-  "[DROPLINK] 자료 이미지 3건이 모두 확보되었습니다.",
-  "[DROPLINK] [기록 분석 지시]",
-  "[DROPLINK] 획득한 기록을 오래된 순서대로 배치하십시오.",
+  "[DROPLINK] 조사 자료 3건이 확보되었습니다.",
+  "[운영본부] 확보한 기록을 오래된 순서대로 배치하십시오.",
 ];
 const chapterThreeBriefings = [
   "[DROPLINK] 분석 결과가 등록되었습니다.",
@@ -186,12 +182,6 @@ const giraffeQuestions: Array<{ key: GiraffeQuestionKey; label: string; answer: 
   },
 ];
 
-const posterCopy: Record<string, string> = {
-  student_hall: "학생회관 포스터를 통해 접속했습니다. 창문 뒤로 긴 그림자를 봤다는 제보가 남아 있습니다.",
-  library: "학술정보원 포스터를 통해 접속했습니다. 새벽 시간대 시계탑 꼭대기 목격 신고가 반복됐습니다.",
-  gate: "정문 포스터를 통해 접속했습니다. 최근 30일 동안 같은 소문과 관련된 신고가 7건 접수됐습니다.",
-};
-
 function triggerDropLinkVibration() {
   if (typeof navigator === "undefined" || typeof navigator.vibrate !== "function") return;
   navigator.vibrate([70, 45, 110]);
@@ -216,9 +206,8 @@ function getDistanceMeters(from: { lat: number; lng: number }, to: { lat: number
 
 export default function Home() {
   const [scene, setScene] = useState<Scene>("entry");
-  const [messageStep, setMessageStep] = useState<MessageStep>("hidden");
   const [distance, setDistance] = useState<number | null>(null);
-  const [locationStatus, setLocationStatus] = useState("위치 확인 전");
+  const [, setLocationStatus] = useState("위치 확인 전");
   const [locationInReach, setLocationInReach] = useState(false);
   const [lastLocationUpdatedAt, setLastLocationUpdatedAt] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<Coordinate | null>(null);
@@ -231,12 +220,11 @@ export default function Home() {
   const [evidenceSending, setEvidenceSending] = useState(false);
   const [evidenceProgress, setEvidenceProgress] = useState(0);
   const evidenceTimerRef = useRef<number | null>(null);
-  const [cameraStatus, setCameraStatus] = useState("카메라 권한을 요청하는 중...");
   const [scanDistance, setScanDistance] = useState<number | null>(null);
   const [scanFound, setScanFound] = useState(false);
   const [activeWitnessId, setActiveWitnessId] = useState(witnesses[0].id);
   const [visitedWitnesses, setVisitedWitnesses] = useState<Record<string, boolean>>(() => Object.fromEntries(witnesses.map((witness) => [witness.id, false])));
-  const [witnessStatus, setWitnessStatus] = useState("지도에서 신호 지점을 선택하고 반경 10m 안에서 자료를 확보하세요.");
+  const [witnessStatus, setWitnessStatus] = useState("");
   const [acquiredWitnessId, setAcquiredWitnessId] = useState<string | null>(null);
   const [arrangeBriefingQueued, setArrangeBriefingQueued] = useState(false);
   const arrangeBriefingQueuedRef = useRef(false);
@@ -289,9 +277,12 @@ export default function Home() {
   useEffect(() => {
     if (scene !== "incident") return;
     const first = window.setTimeout(() => {
-      setMessageStep("first");
+      setDropLinkMode("case");
+      setDropLinkLine(0);
+      setDropLinkText("");
+      setDropLinkNoticeOpen(true);
       triggerDropLinkVibration();
-    }, 5200);
+    }, 1000);
     return () => window.clearTimeout(first);
   }, [scene]);
 
@@ -319,13 +310,6 @@ export default function Home() {
       }
     };
   }, []);
-
-  const posterId = useMemo(() => {
-    if (typeof window === "undefined") return "student_hall";
-    return new URLSearchParams(window.location.search).get("poster_id") ?? "student_hall";
-  }, []);
-
-  const posterText = posterCopy[posterId] ?? posterCopy.student_hall;
 
   function getActiveDropLinkBriefings(mode: DropLinkMode) {
     if (mode === "case") return dropLinkBriefings;
@@ -364,9 +348,9 @@ export default function Home() {
     if (options.silent) return;
     if (nextDistance <= reachRadiusMeters) {
       setLocationStatus("잔디밭 조사 범위에 진입했습니다. 카메라 조사를 시작할 수 있습니다.");
-      return;
+    } else {
+      setLocationStatus("");
     }
-    setLocationStatus("아직 조사 범위 밖입니다. 지정된 잔디밭 쪽으로 이동하세요.");
   }
 
   function requestMissionLocation(options: { silent?: boolean } = {}) {
@@ -454,7 +438,7 @@ export default function Home() {
   useEffect(() => {
     if (scene !== "mission") return;
     const initial = window.setTimeout(() => requestMissionLocation({ silent: true }), 0);
-    const interval = window.setInterval(() => requestMissionLocation({ silent: true }), 10000);
+    const interval = window.setInterval(() => requestMissionLocation({ silent: true }), 2000);
     return () => {
       window.clearTimeout(initial);
       window.clearInterval(interval);
@@ -466,7 +450,7 @@ export default function Home() {
   useEffect(() => {
     if (scene !== "witness") return;
     const initial = window.setTimeout(() => requestWitnessLocation({ silent: true }), 0);
-    const interval = window.setInterval(() => requestWitnessLocation({ silent: true }), 10000);
+    const interval = window.setInterval(() => requestWitnessLocation({ silent: true }), 2000);
     return () => {
       window.clearTimeout(initial);
       window.clearInterval(interval);
@@ -499,7 +483,6 @@ export default function Home() {
     if (cameraFoundTimerRef.current !== null) return;
     setScanFound(true);
     triggerEvidenceVibration();
-    setCameraStatus("신호 고정 완료. 노란털 표본을 증거로 확보합니다.");
     cameraFoundTimerRef.current = window.setTimeout(() => {
       stopCameraScan();
       moveToScene("arrival");
@@ -519,7 +502,6 @@ export default function Home() {
       return;
     }
 
-    setCameraStatus(`현재 조사 지점까지 ${nextDistance}m. 10m 안으로 접근하면 노란털 신호가 보입니다.`);
   }
 
   async function startCameraScan(options: { adminOverride?: boolean } = {}) {
@@ -538,7 +520,6 @@ export default function Home() {
 
     setScanFound(false);
     setScanDistance(null);
-    setCameraStatus("카메라 권한을 요청하는 중...");
     moveToScene("camera");
     await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()));
 
@@ -552,15 +533,10 @@ export default function Home() {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
       }
-      setCameraStatus(
-        options.adminOverride
-          ? "관리자 권한으로 AR 카메라를 실행했습니다. 단서 발견 버튼으로 결과를 확인할 수 있습니다."
-          : "잔디밭 아래쪽을 천천히 비춰 주세요. 10m 안으로 접근하면 신호가 반응합니다.",
-      );
       if (navigator.geolocation) {
         cameraWatchRef.current = navigator.geolocation.watchPosition(
           updateCameraDistance,
-          () => setCameraStatus("위치 권한을 허용하면 노란털 신호를 감지할 수 있습니다."),
+          () => undefined,
           { enableHighAccuracy: true, maximumAge: 1000, timeout: 10000 },
         );
       }
@@ -580,14 +556,7 @@ export default function Home() {
     if ((scene === "camera" && nextScene !== "camera") || (scene === "firstContact" && nextScene !== "firstContact")) {
       stopCameraScan();
     }
-    if (nextScene === "incident") {
-      setMessageStep("hidden");
-    }
     setScene(nextScene);
-  }
-
-  function checkLocation() {
-    requestMissionLocation();
   }
 
   function markActiveWitnessArrived() {
@@ -881,17 +850,6 @@ export default function Home() {
     triggerDropLinkVibration();
   }
 
-  function handleDropLink() {
-    if (messageStep === "first") {
-      setDropLinkMode("case");
-      setDropLinkLine(0);
-      setDropLinkText("");
-      setCaseModalOpen(true);
-      return;
-    }
-    moveToScene("mission");
-  }
-
   function advanceDropLinkDialogue() {
     const activeBriefings = getActiveDropLinkBriefings(dropLinkMode);
     if (dropLinkLine < activeBriefings.length - 1) {
@@ -912,7 +870,6 @@ export default function Home() {
     if (dropLinkMode === "clue") {
       setCaseModalOpen(false);
       setCaseTransferActive(false);
-      setMessageStep("hidden");
       setDropLinkMode("case");
       setDropLinkLine(0);
       setDropLinkText("");
@@ -924,7 +881,6 @@ export default function Home() {
     window.setTimeout(() => {
       setCaseModalOpen(false);
       setCaseTransferActive(false);
-      setMessageStep("hidden");
       setDropLinkMode("case");
       setDropLinkLine(0);
       setDropLinkText("");
@@ -967,26 +923,21 @@ export default function Home() {
         <section className="screen case-entry">
           <div className="case-title">
             <p>CD-SJ-01</p>
-            <h1>시계탑 꼭대기에서 무언가 목격됐다</h1>
+            <h1>시계탑에서<br />무언가 목격되었다</h1>
           </div>
           <div className="case-status">
             <span>최근 목격 신고</span>
             <strong>7건</strong>
             <p>아직 확인된 사진은 없습니다.</p>
           </div>
-          <p className="poster-source">{posterText}</p>
           <div className="entry-guide" aria-label="조사 안내">
             <article>
               <span>소개</span>
-              <p>Campus Drop은 교내 QR 포스터에서 시작되는 현장 조사형 웹 게임입니다.</p>
-            </article>
-            <article>
-              <span>진행 방식</span>
-              <p>지정된 잔디밭에서 카메라 조사를 시작하고, 반경 20m 안에서 첫 번째 흔적을 감지합니다.</p>
+              <p>시계탑 위에서 목격된 정체불명의 그림자.<br />남겨진 흔적을 따라, 캠퍼스에 숨은 이야기를 밝혀내세요.</p>
             </article>
             <article>
               <span>안내</span>
-              <p>이야기의 단서가 중요합니다. 큰 소리나 스포일러 없이 천천히 진행해 주세요.</p>
+              <p>이어폰을 끼고 진행하면 현장 소리와 이야기에 더욱 몰입할 수 있습니다.</p>
             </article>
           </div>
           <button className="primary-action" type="button" onClick={() => moveToScene("incident")}>
@@ -1023,25 +974,9 @@ export default function Home() {
 
           <div className="time-report">
             <span>CAMPUS DROP 운영본부</span>
-            <strong>시계탑 대형 생물 목격 사건</strong>
+            <strong>대형 생물 목격 사건</strong>
             <p>DROP LINK 수신 후 사건 개요와 첫 조사 목표가 열립니다.</p>
           </div>
-
-          <div className="system-message">
-            <span>첫 번째 목표</span>
-            <p>시계탑으로 이동해 목격 신고가 사실인지 확인하세요.</p>
-          </div>
-
-          {messageStep !== "hidden" && (
-            <button
-              className="unknown-message"
-              type="button"
-              onClick={handleDropLink}
-            >
-              <div className="talk-notice-head"><span>DROP LINK</span><em>지금</em></div>
-              <div className="talk-notice-body"><span className="talk-drop-core" aria-hidden="true">DROP</span><div><b>CAMPUS DROP 운영본부</b><strong>사용자 인증 완료. CD-SJ-01 현장 조사에 임시 배정됐습니다.</strong><small>탭해서 사건 개요 보기</small></div></div>
-            </button>
-          )}
 
         </section>
       )}
@@ -1050,8 +985,8 @@ export default function Home() {
         <section className="screen mission-screen">
           <div className="mission-copy">
             <p>사건 개요</p>
-            <h2>CD-SJ-01 현장 조사 개방</h2>
-            <span>농동로 209 인근 잔디밭으로 이동해 기린의 노란털 흔적을 확인하세요. GPS는 반경 20m 진입 여부만 확인합니다.</span>
+            <h2>CD-SJ-01<br />현장 조사 개방</h2>
+            <span>지정된 조사 구역으로 이동하십시오.<br />현장에 도착하면 주변 신호를 확인하고 조사를 진행하십시오.</span>
           </div>
 
           <div className="campus-radar">
@@ -1062,17 +997,12 @@ export default function Home() {
                 <strong>{distance === null ? "위치 확인 필요" : `${distance}m`}</strong>
               </div>
               <div>
-                <span>조사 가능 범위</span>
-                <strong>{reachRadiusMeters}m</strong>
-              </div>
-              <div>
                 <span>내 위치 갱신</span>
                 <strong>{lastLocationUpdatedAt ?? "대기 중"}</strong>
               </div>
             </div>
           </div>
 
-          <p className="location-status">{locationStatus}</p>
           <div className="mission-actions">
             <button
               className={`primary-action scan-start-action${locationInReach ? " is-ready" : " is-locked"}`}
@@ -1080,13 +1010,10 @@ export default function Home() {
               onClick={() => startCameraScan()}
               disabled={!locationInReach}
             >
-              {locationInReach ? "카메라로 노란털 조사 시작" : "20m 안에서 조사 시작 가능"}
+              {locationInReach ? "조사 시작" : "조사할 위치로 이동하세요."}
             </button>
             <button className="secondary-action" type="button" onClick={() => startCameraScan({ adminOverride: true })}>
               관리자 권한으로 AR 실행
-            </button>
-            <button className="text-scan-refresh" type="button" onClick={checkLocation}>
-              현재 위치 즉시 갱신
             </button>
           </div>
         </section>
@@ -1099,8 +1026,7 @@ export default function Home() {
           <div className="camera-discovery-flash" aria-hidden="true" />
           <div className="camera-hud">
             <p>AR 현장 조사</p>
-            <h2>잔디밭을 천천히 훑어보세요</h2>
-            <span>{cameraStatus}</span>
+            <h2>잔디밭에서 흔적을 조사하세요.</h2>
           </div>
           <div className="camera-scan-line" aria-hidden="true" />
           <div className="camera-clue-pin" aria-hidden="true">
@@ -1148,12 +1074,12 @@ export default function Home() {
 
           <div className="fur-evidence-card is-transmitting">
             <div className="fur-image-wrap">
-              <div className="fur-image" role="img" aria-label="기린의 노란털 표본" />
+              <div className="fur-image" role="img" aria-label="노란색 털 표본" />
             </div>
             <div className="fur-evidence-copy">
               <span>현장 표본 A</span>
-              <strong>기린의 노란털</strong>
-              <p>잔디밭 가장자리에서 확보한 노란 털 표본입니다. 운영본부 분석 서버로 원본 데이터를 전송합니다.</p>
+              <strong>노란색 털</strong>
+              <p>잔디밭 가장자리에서 확보한 노란 털 표본입니다.<br />독특한 얼룩무늬를 가지고 있습니다.</p>
             </div>
           </div>
 
@@ -1186,7 +1112,7 @@ export default function Home() {
         <section className="screen witness-screen">
           <div className="mission-copy">
             <p>2장</p>
-            <h2>여러 사람이 그린 하나의 기린</h2>
+            <h2>확보된 표본<br />분석 결과 보고</h2>
             <span>지도에 표시된 3개 신호 지점에서 과거 기록을 확보하세요.</span>
           </div>
 
@@ -1204,9 +1130,8 @@ export default function Home() {
             </div>
           </div>
 
-          <p className="location-status">{witnessStatus}</p>
+          {witnessStatus && <p className="location-status">{witnessStatus}</p>}
           <div className="mission-actions witness-actions">
-            <button className="secondary-action" type="button" onClick={() => requestWitnessLocation()}>현재 위치 즉시 갱신</button>
             <button className="text-scan-refresh" type="button" onClick={markActiveWitnessArrived}>관리자 권한으로 도착 완료</button>
           </div>
 
@@ -1653,10 +1578,13 @@ export default function Home() {
       )}
 
       {dropLinkNoticeOpen && (
-        <button className="unknown-message is-visible drop-link-global-notice" type="button" onClick={openDropLinkModalFromNotice}>
-          <div className="talk-notice-head"><span>DROP LINK</span><em>지금</em></div>
-          <div className="talk-notice-body"><span className="talk-drop-core" aria-hidden="true">DROP</span><div><b>CAMPUS DROP 운영본부</b><strong>{dropLinkMode === "clue" ? "증거물 분석 결과가 도착했습니다." : dropLinkMode === "arrange" ? "기록 배열 지시가 도착했습니다." : dropLinkMode === "chapter3" ? "추가 분석 지시가 도착했습니다." : dropLinkMode === "chapter4" ? "증거물 상태 변화가 감지됐습니다." : "잔류 패턴 추적 지시가 도착했습니다."}</strong><small>탭해서 DROPLINK 열기</small></div></div>
-        </button>
+        <>
+          <div className="drop-link-notice-backdrop" aria-hidden="true" />
+          <button className="unknown-message is-visible drop-link-global-notice" type="button" onClick={openDropLinkModalFromNotice} aria-label="DROPLINK 메시지 열기">
+            <div className="talk-notice-head"><span>DROP LINK</span><em>지금</em></div>
+            <div className="talk-notice-body"><span className="talk-drop-core" aria-hidden="true">DROP</span><div><b>CAMPUS DROP 운영본부</b><strong>{dropLinkMode === "case" ? "사용자 인증 완료. CD-SJ-01 현장 조사에 임시 배정됐습니다." : dropLinkMode === "clue" ? "증거물 분석 결과가 도착했습니다." : dropLinkMode === "arrange" ? "기록 배열 지시가 도착했습니다." : dropLinkMode === "chapter3" ? "추가 분석 지시가 도착했습니다." : dropLinkMode === "chapter4" ? "증거물 상태 변화가 감지됐습니다." : "잔류 패턴 추적 지시가 도착했습니다."}</strong><small>탭해서 DROPLINK 열기</small></div></div>
+          </button>
+        </>
       )}
 
       {caseModalOpen && (
@@ -1913,5 +1841,3 @@ function MissionMap({ userLocation }: { userLocation: Coordinate | null }) {
     </div>
   );
 }
-
-

@@ -1800,6 +1800,7 @@ button:focus-visible {
   font-weight: 850;
   line-height: 1.56;
   word-break: keep-all;
+  white-space: pre-line;
 }
 
 .drop-link-type i {
@@ -2177,6 +2178,11 @@ button:focus-visible {
 .case-entry .warning-copy,
 .entry-guide p {
   color: var(--readable-muted-dark);
+}
+
+.case-entry .case-status p {
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .poster-source {
@@ -4084,3 +4090,108 @@ button:focus-visible {
 }
 
 .drop-link-global-notice { z-index: 80; }
+
+/* Latest giraffe investigation release */
+.drop-link-notice-backdrop {
+  position: fixed;
+  z-index: 79;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.drop-link-notice-backdrop[hidden] {
+  display: none;
+}
+
+.drop-link-global-notice {
+  border-color: rgba(0, 184, 169, 0.32);
+  background: rgba(247, 255, 249, 0.96);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+.drop-link-global-notice.is-visible {
+  animation: message-in 520ms cubic-bezier(.18, .9, .24, 1.12) both, drop-link-notice-pulse 1.5s ease-in-out 760ms infinite;
+}
+
+.drop-link-global-notice .talk-drop-core {
+  color: #008b81;
+}
+
+.case-entry {
+  isolation: isolate;
+  overflow: hidden;
+  background: #091817;
+}
+
+.case-entry::before,
+.case-entry::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.case-entry::before {
+  z-index: 0;
+  background: url("./giraffe-title-clocktower.png") 24% center / cover no-repeat;
+  transform: scale(1.02);
+}
+
+.case-entry::after {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(3, 13, 24, 0.06) 0%, rgba(3, 13, 24, 0.24) 36%, rgba(3, 13, 24, 0.88) 77%, rgba(3, 13, 24, 0.98) 100%);
+}
+
+.case-entry > * {
+  position: relative;
+  z-index: 2;
+}
+
+.case-entry .case-title {
+  margin-top: clamp(290px, 43svh, 450px);
+}
+
+.case-entry .case-title h1 {
+  color: #f7f1e3 !important;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.58);
+}
+
+.case-entry .case-title p,
+.case-entry .case-status span,
+.case-entry .entry-guide span {
+  color: #9ee8d9;
+}
+
+.case-entry .case-status,
+.case-entry .entry-guide article {
+  border-color: rgba(247, 241, 227, 0.2);
+  background: rgba(4, 17, 23, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.case-entry .case-status strong,
+.case-entry .case-status p,
+.case-entry .entry-guide p,
+.case-entry .warning-copy {
+  color: #f7f1e3;
+}
+
+.mission-screen .mission-copy > span {
+  color: #000;
+  font-weight: 800;
+}
+
+.camera-hud h2 {
+  color: #a46f00 !important;
+}
+
+@keyframes drop-link-notice-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+}
+
+/* Keep amber information distinct on the investigation's pale surfaces. */
+:root { --field-amber-text: #7a5600; --field-amber-strong: #8d5d00; }
+h1, h2, h3, h4, h5, h6 { color: #000 !important; }
+.clock-face .hand { background: var(--field-amber-strong); box-shadow: 0 0 0 1px rgba(8, 16, 17, 0.36); }
