@@ -17,18 +17,16 @@
       <section class="screen case-entry" data-screen="entry">
         <div class="case-title">
           <p>CD-SJ-01</p>
-          <h1>시계탑 꼭대기에서 무언가 목격됐다</h1>
+          <h1>시계탑에서<br />무언가 목격되었다</h1>
         </div>
         <div class="case-status">
           <span>최근 목격 신고</span>
           <strong>7건</strong>
           <p>아직 확인된 사진은 없습니다.</p>
         </div>
-        <p class="poster-source" id="posterSource">학생회관 포스터를 통해 접속했습니다. 창문 뒤로 긴 그림자를 봤다는 제보가 남아 있습니다.</p>
         <div class="entry-guide" aria-label="조사 안내">
-          <article><span>소개</span><p>Campus Drop은 교내 QR 포스터에서 시작되는 현장 조사형 웹 게임입니다.</p></article>
-          <article><span>진행 방식</span><p>지정된 잔디밭에서 카메라 조사를 시작하고, 반경 20m 안에서 첫 번째 흔적을 감지합니다.</p></article>
-          <article><span>안내</span><p>이야기의 단서가 중요합니다. 큰 소리나 스포일러 없이 천천히 진행해 주세요.</p></article>
+          <article><span>소개</span><p>시계탑 위에서 목격된 정체불명의 그림자.<br />남겨진 흔적을 따라, 캠퍼스에 숨은 이야기를 밝혀내세요.</p></article>
+          <article><span>안내</span><p>이어폰을 끼고 진행하면 현장 소리와 이야기에 더욱 몰입할 수 있습니다.</p></article>
         </div>
         <button class="primary-action" type="button" data-go="incident">조사 참여하기</button>
         <p class="warning-copy">※ 이동 중에는 주변을 확인하고 안전한 위치에서 화면을 조작하세요.</p>
@@ -54,24 +52,16 @@
         </div>
         <div class="time-report">
           <span>CAMPUS DROP 운영본부</span>
-          <strong>시계탑 대형 생물 목격 사건</strong>
+          <strong>대형 생물 목격 사건</strong>
           <p>DROP LINK 수신 후 사건 개요와 첫 조사 목표가 열립니다.</p>
         </div>
-        <div class="system-message">
-          <span>첫 번째 목표</span>
-          <p>시계탑으로 이동해 목격 신고가 사실인지 확인하세요.</p>
-        </div>
-        <button class="unknown-message" id="unknownMessage" type="button">
-          <div class="talk-notice-head"><span>DROP LINK</span><em>지금</em></div>
-          <div class="talk-notice-body"><span class="talk-drop-core" aria-hidden="true">DROP</span><div><b>CAMPUS DROP 운영본부</b><strong>사용자 인증 완료. CD-SJ-01 현장 조사에 임시 배정됐습니다.</strong><small>탭해서 사건 개요 보기</small></div></div>
-        </button>
       </section>
 
       <section class="screen mission-screen" data-screen="mission">
         <div class="mission-copy">
           <p>사건 개요</p>
-          <h2>CD-SJ-01 현장 조사 개방</h2>
-          <span>농동로 209 인근 잔디밭으로 이동해 기린의 노란털 흔적을 확인하세요. GPS는 반경 20m 진입 여부만 확인합니다.</span>
+          <h2>CD-SJ-01<br />현장 조사 개방</h2>
+          <span>지정된 조사 구역으로 이동하십시오.<br />현장에 도착하면 주변 신호를 확인하고 조사를 진행하십시오.</span>
         </div>
         <div class="campus-radar">
           <div class="real-map-shell" id="missionMap">
@@ -81,15 +71,13 @@
           </div>
           <div class="radar-data">
             <div><span>예상 거리</span><strong id="distanceText">위치 확인 필요</strong></div>
-            <div><span>조사 가능 범위</span><strong>20m</strong></div>
             <div><span>내 위치 갱신</span><strong id="locationUpdatedText">대기 중</strong></div>
           </div>
         </div>
-        <p class="location-status" id="locationStatus">위치 확인 전</p>
+        <p class="location-status" id="locationStatus" hidden></p>
         <div class="mission-actions">
-          <button class="primary-action scan-start-action is-locked" type="button" id="startCameraScan" disabled>20m 안에서 조사 시작 가능</button>
+          <button class="primary-action scan-start-action is-locked" type="button" id="startCameraScan" disabled>조사할 위치로 이동하세요.</button>
           <button class="secondary-action" type="button" id="adminStartCameraScan">관리자 권한으로 AR 실행</button>
-          <button class="text-scan-refresh" type="button" id="checkLocation">현재 위치 즉시 갱신</button>
         </div>
       </section>
 
@@ -99,8 +87,7 @@
         <div class="camera-discovery-flash" aria-hidden="true"></div>
         <div class="camera-hud">
           <p>AR 현장 조사</p>
-          <h2>잔디밭을 천천히 훑어보세요</h2>
-          <span id="cameraStatus">카메라 권한을 요청하는 중...</span>
+          <h2>잔디밭에서 흔적을 조사하세요.</h2>
         </div>
         <div class="camera-scan-line" aria-hidden="true"></div>
         <div class="camera-clue-pin" aria-hidden="true"><i></i><b></b></div>
@@ -123,8 +110,8 @@
           <span>카메라 조사 중 잔디밭 하단 신호가 반응했습니다. 확보한 표본을 운영본부로 전송합니다.</span>
         </div>
         <div class="fur-evidence-card is-transmitting">
-          <div class="fur-image-wrap"><img src="./GFfur.png" alt="기린의 노란털 표본" /></div>
-          <div class="fur-evidence-copy"><span>현장 표본 A</span><strong>기린의 노란털</strong><p>잔디밭 가장자리에서 확보한 노란 털 표본입니다. 운영본부 분석 서버로 원본 데이터를 전송합니다.</p></div>
+          <div class="fur-image-wrap"><img src="./GFfur.png" alt="노란색 털 표본" /></div>
+          <div class="fur-evidence-copy"><span>현장 표본 A</span><strong>노란색 털</strong><p>잔디밭 가장자리에서 확보한 노란 털 표본입니다.<br />독특한 얼룩무늬를 가지고 있습니다.</p></div>
         </div>
         <button class="primary-action chapter-next-action" type="button" id="sendEvidenceButton">표본 전송하기</button>
       </section>
@@ -146,7 +133,7 @@
       <section class="screen witness-screen" data-screen="witness">
         <div class="mission-copy">
           <p>2장</p>
-          <h2>여러 사람이 그린 하나의 기린</h2>
+          <h2>확보된 표본<br />분석 결과 보고</h2>
           <span>지도에 표시된 3개 신호 지점에서 과거 기록을 확보하세요.</span>
         </div>
         <div class="campus-radar witness-radar">
@@ -160,9 +147,8 @@
             <div><span>배열 상태</span><strong id="directionWitnessText">0/3</strong></div>
           </div>
         </div>
-        <p class="location-status" id="witnessStatus">지도에서 신호 지점을 선택하고 반경 10m 안에서 자료를 확보하세요.</p>
+        <p class="location-status" id="witnessStatus" hidden></p>
         <div class="mission-actions witness-actions">
-          <button class="secondary-action" type="button" id="checkWitnessLocation">현재 위치 즉시 갱신</button>
           <button class="text-scan-refresh" type="button" id="adminArriveWitness">관리자 권한으로 도착 완료</button>
         </div>
       </section>
@@ -365,6 +351,7 @@
         </div>
       </section>
 
+    <div class="drop-link-notice-backdrop" id="dropLinkNoticeBackdrop" aria-hidden="true" hidden></div>
     <button class="unknown-message drop-link-global-notice" id="dropLinkNotice" type="button" hidden>
       <div class="talk-notice-head"><span>DROP LINK</span><em>지금</em></div>
       <div class="talk-notice-body"><span class="talk-drop-core" aria-hidden="true">DROP</span><div><b>CAMPUS DROP 운영본부</b><strong id="dropLinkNoticeText">새 조사 지시가 도착했습니다.</strong><small>탭해서 DROPLINK 열기</small></div></div>
