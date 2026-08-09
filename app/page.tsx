@@ -20,10 +20,10 @@ export default function GameHub() {
       <div className="game-hub-noise" aria-hidden="true" />
       <header className="game-hub-header">
         <Link className="game-hub-brand" href="/" aria-label="Campus Drop 게임 선택">
-          <Image src="/campusdrop_logo.png" alt="" width={46} height={46} priority />
+          <Image src="/campusdrop_logo.png" alt="" width={46} height={46} priority unoptimized />
           <span>Campus Drop</span>
         </Link>
-        <Link className="game-hub-editor-link" href="/editor">미션 에디터</Link>
+        <Link className="game-hub-editor-link" href="/maker">게임 만들기</Link>
       </header>
 
       <section className="game-hub-hero" aria-labelledby="game-hub-title">
@@ -44,7 +44,7 @@ export default function GameHub() {
         <div className="game-card-grid">
           {games.map((game) => (
             <article className="game-card" key={game.slug}>
-              <Image className="game-card-image" src={game.image} alt="시계탑 기린 목격 기록" fill sizes="(max-width: 720px) 100vw, 460px" priority />
+              <Image className="game-card-image" src={game.image} alt="시계탑 기린 목격 기록" fill sizes="(max-width: 720px) 100vw, 460px" priority unoptimized />
               <div className="game-card-shade" aria-hidden="true" />
               <div className="game-card-content">
                 <div className="game-card-topline">
@@ -65,7 +65,7 @@ export default function GameHub() {
         </div>
       </section>
 
-      <footer className="game-hub-footer">새 게임은 미션 에디터에서 준비한 뒤 이곳에 추가됩니다.</footer>
+      <footer className="game-hub-footer">새 게임은 Maker에서 설계한 뒤 이곳에 추가됩니다.</footer>
     </main>
   );
 }

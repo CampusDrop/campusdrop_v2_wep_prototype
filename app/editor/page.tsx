@@ -86,7 +86,7 @@ export default function EditorPage() {
             게임 선택으로
           </Link>
           <div className="brand-lockup editor-brand">
-            <Image src="/campusdrop_logo.png" alt="Campus Drop" width={42} height={42} priority />
+            <Image src="/campusdrop_logo.png" alt="Campus Drop" width={42} height={42} priority unoptimized />
             <div>
               <span>Campus Drop</span>
               <em>미션 맵 에디터</em>
