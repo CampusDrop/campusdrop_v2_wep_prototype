@@ -67,6 +67,8 @@
 .landing-map-note strong { font-size: clamp(20px, 2.4vw, 28px); letter-spacing: -.06em; }
 
 .landing-intro { max-width: 760px; margin: 0 auto clamp(88px, 12vw, 150px); text-align: center; }
+.landing-intro,
+.landing-steps { scroll-margin-top: 24px; }
 .landing-intro h2, .landing-section-heading h2, .landing-principles h2, .landing-first-case h2, .landing-partner-callout h2, .partner-options h2, .partner-next h2 { margin: 0; font-size: clamp(31px, 4.4vw, 52px); line-height: 1.05; letter-spacing: -.07em; }
 .landing-intro > p:last-child { max-width: 590px; margin: 22px auto 0; color: #5c6b63; font-size: 16px; line-height: 1.7; }
 .landing-steps { max-width: 1180px; margin: 0 auto clamp(74px, 10vw, 130px); }

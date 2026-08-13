@@ -23,7 +23,7 @@ export default function HomePage() {
           <span>Campus Drop</span>
         </Link>
         <nav className="landing-nav" aria-label="주요 메뉴">
-          <Link href="/games/giraffe">첫 탐험</Link>
+          <Link href="#campus-drop">Campus Drop</Link>
           <Link href="/partner">제휴 안내</Link>
         </nav>
       </header>
@@ -37,8 +37,8 @@ export default function HomePage() {
             캠퍼스 곳곳의 이야기와 공간을 직접 발견하는 플랫폼입니다.
           </p>
           <div className="landing-actions">
-            <Link className="landing-action landing-action-primary" href="/games/giraffe">
-              Campus Drop 시작하기 <span aria-hidden="true">↗</span>
+            <Link className="landing-action landing-action-primary" href="#how-it-works">
+              Campus Drop 알아보기 <span aria-hidden="true">↓</span>
             </Link>
             <Link className="landing-action landing-action-secondary" href="/partner">
               매장 제휴 알아보기 <span aria-hidden="true">→</span>
@@ -65,7 +65,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="landing-intro" aria-labelledby="landing-intro-title">
+      <section id="campus-drop" className="landing-intro" aria-labelledby="landing-intro-title">
         <p className="landing-eyebrow">WHY CAMPUS DROP</p>
         <h2 id="landing-intro-title">지나치던 캠퍼스에<br />나만의 목적지가 생깁니다.</h2>
         <p>
@@ -74,7 +74,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="landing-steps" aria-labelledby="landing-steps-title">
+      <section id="how-it-works" className="landing-steps" aria-labelledby="landing-steps-title">
         <div className="landing-section-heading">
           <p className="landing-eyebrow">THE DROP FLOW</p>
           <h2 id="landing-steps-title">발견은 이렇게 이어져요</h2>
