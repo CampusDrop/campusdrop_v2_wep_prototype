@@ -1,140 +1,77 @@
-# Campus Drop WebAR Demo
+# Campus Drop 웹
 
-캠퍼스 안내판 같은 실제 기물을 스캔하면 AR 미션이 열리고, 미션을 클리어하면 당일 사용 쿠폰이 발급되는 흐름을 보여주는 인터랙티브 웹 데모입니다.
+Campus Drop의 공개 랜딩, 제휴 안내, 기린 방탈출 게임, 제휴업체 포털 및 운영자 포털을 담은 Next.js/TypeScript 웹 프로젝트입니다.
 
-이 프로젝트는 출시용 MVP가 아니라 팀 내부 시연용입니다. 회원가입, 로그인, 시간표 등록, 매칭, 서버, DB는 포함하지 않습니다.
+## 빠른 실행
 
-## 포함된 흐름
-
-1. 하단 `Map` 탭에서 캠퍼스 지도와 크루 위치를 확인합니다.
-2. `AR 스캔 시작`을 누릅니다.
-3. 모바일 브라우저가 카메라 권한을 요청합니다.
-4. 세종대 지도 안내판 기물 또는 전용 포스터를 화면 중앙에 맞춥니다.
-5. 대상이 인식되면 카메라 화면 위에 3D 기린과 게임식 대사창이 나타납니다.
-6. 기린을 탭하면 퀘스트형 미션으로 이동합니다.
-7. 3자리 코드 `428`을 입력하면 미션 성공 화면이 나옵니다.
-8. `오늘 23:59까지` 사용할 수 있는 캠퍼스 쿠폰이 발급됩니다.
-
-## 인식 대상 기물
-
-현재 데모는 두 가지 대상을 인식합니다.
-
-- `public/sejong-map-fixture.jpeg`
-- `public/campus-drop-marker.svg`
-
-실제 시연에서는 세종대 지도 안내판 앞에서 스마트폰 카메라를 켜고, 밝은 지도 영역이 화면 중앙 프레임 안에 들어오도록 비추면 됩니다. 전용 포스터를 사용할 때는 다른 화면에 포스터 이미지를 띄우거나 인쇄해서 비추면 됩니다.
-
-현재 구현은 시연 안정성을 위해 안내판의 밝은 지도 패널, 청록색 지도 영역, 분홍 번호점 조합을 인식하고, 전용 포스터의 초록/노랑 고대비 표식도 함께 인식합니다. GPS 기반 AR은 사용하지 않습니다.
-
-## 로컬 실행
-
-필요 조건:
-
-- Node.js `>=22.13.0`
-
-설치 및 실행:
+필요 조건은 Node.js `>=22.13.0`과 npm입니다. 잠금 파일과 일치하는 의존성을 설치한 뒤 개발 서버를 시작합니다.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-개발 서버가 표시하는 주소로 접속합니다.
+개발 서버가 출력한 주소(기본 `http://localhost:3000`)로 접속합니다. 종료는 터미널에서 `Ctrl+C`를 누릅니다.
 
-## 모바일 카메라 테스트
+의존성을 의도적으로 변경할 때만 `npm install`을 사용하고, 일반적인 실행·검증에는 `npm ci`를 사용합니다.
 
-카메라 권한은 보통 `https://` 또는 `localhost`에서만 허용됩니다.
+## 주요 경로
 
-같은 Wi-Fi의 스마트폰에서 테스트하려면 HTTPS 터널을 사용하세요.
+공개 화면에는 게임과 제휴 안내만 연결합니다.
 
-예시:
+- `/` — 공개 랜딩
+- `/partner` — 공개 제휴 안내
+- `/games/giraffe` — 기린 방탈출 게임
+- `/editor` — 이전 제작 도구 경로의 안내 화면. 실제 도구는 `/admin/editor`입니다.
+- `/admin/*`, `/partner/*` — 서버 인증·역할 검증이 필요한 포털 경로
+
+현재 포털은 백엔드의 HttpOnly 세션·역할·소속 검증 API가 아직 연결되지 않았으므로, `/admin`, `/partner/dashboard` 등에서 **데이터 없는 연동 대기 화면**을 보여 줍니다. 브라우저 저장소의 역할 플래그나 데모 계정으로 포털 데이터를 노출하지 않습니다.
+
+## 환경 변수
+
+공개 화면과 연동 대기 포털을 실행하는 데 환경 변수는 필요하지 않습니다.
+
+백엔드 API 요청을 연결하는 단계에서만 프로젝트 루트에 `.env.local`을 만들고 다음 값을 설정합니다.
 
 ```bash
-npm run dev
-npx localtunnel --port 3000
+VITE_CAMPUSDROP_API_BASE_URL=http://127.0.0.1:8080
 ```
 
-또는 Cloudflare Tunnel, ngrok, Vercel Preview, Cloudflare Pages 같은 HTTPS 배포/프리뷰 주소를 사용해도 됩니다.
+값은 경로·쿼리·인증 정보가 없는 `http` 또는 `https` **origin**이어야 합니다. 예: `https://api.example.com`.
+`VITE_`로 시작하는 값은 브라우저 번들에 포함되므로 비밀키·토큰·비밀번호를 넣으면 안 됩니다. 예시 값은 [.env.example](.env.example)에 있습니다.
 
-## 배포 방법
-
-빌드 확인:
+## 프로덕션 실행
 
 ```bash
 npm run build
+npm run start
 ```
 
-배포는 Vercel, Cloudflare Pages, 또는 Sites 배포 환경에 올릴 수 있습니다. 배포 후에는 스마트폰에서 HTTPS 주소로 접속해 카메라 권한을 허용하면 됩니다.
+프로덕션 실행도 환경 변수 없이 시작할 수 있으며, 실제 보호 기능과 포털 데이터는 백엔드 세션 API가 연결된 뒤에만 활성화합니다.
 
-## GitHub Pages
+## 검증
 
-GitHub Pages용 정적 데모는 `gh-pages/` 폴더에 있습니다. `main` 브랜치에 push하면 `.github/workflows/pages.yml`이 실행되어 다음 주소로 배포됩니다.
-
-- `https://campusdrop.github.io/campusdrop_v2_prototype/`
-
-Pages 버전도 같은 사용자 흐름을 제공합니다. 스마트폰으로 접속한 뒤 `AR 스캔 시작`을 누르고 세종대 지도 안내판 기물이나 전용 포스터를 비추면 됩니다.
-
-## Kakao 지도 테스트
-
-`Map` 탭은 Kakao Maps JavaScript SDK를 불러와 캠퍼스 지도를 표시합니다. 지도 색감은 Kakao 지도 스타일을 바꾸는 방식이 아니라, 지도 컨테이너의 CSS `filter`로 어두운 무채색 톤을 적용합니다.
-
-Kakao Developers에서 JavaScript 키를 만들고, 플랫폼 Web 도메인에 아래 주소를 허용해 둡니다.
-
-```text
-https://campusdrop.github.io
+```bash
+npm run lint
+npm run test:api-client
+npm run build
 ```
 
-로컬에서 테스트할 때는 아래 주소도 추가합니다.
+개발 서버를 켠 뒤에는 아래 경로가 각각 응답하는지 확인합니다.
 
-```text
-http://localhost:3000
+```bash
+curl -I http://localhost:3000/
+curl -I http://localhost:3000/partner
+curl -I http://localhost:3000/games/giraffe
+curl -I http://localhost:3000/editor
+curl -I http://localhost:3000/admin
+curl -I http://localhost:3000/partner/dashboard
 ```
 
-GitHub Pages 데모에는 기본 Kakao JavaScript 키가 설정되어 있어 아래 주소로 바로 접속하면 지도가 표시됩니다.
+`/admin`은 `/admin/dashboard`로 리디렉션될 수 있습니다. 인증 연동 전에는 포털 데이터가 아닌 연동 대기 화면이 정상 결과입니다.
 
-```text
-https://campusdrop.github.io/campusdrop_v2_prototype/
+## 모바일 기린 게임 확인
 
-현재 데모에는 기본 카카오 JavaScript 키가 설정되어 있어 별도 쿼리 없이 지도가 표시됩니다. 다른 앱 키로 테스트하려면 `?kakaoKey=YOUR_KAKAO_JAVASCRIPT_KEY`를 붙여 접속하세요.
-```
+기린 게임은 카메라·위치·Kakao 지도·전체 화면 레이아웃을 사용합니다. 카메라와 위치 권한은 일반적으로 `localhost` 또는 HTTPS에서만 허용됩니다. 실제 모바일 기기에서는 HTTPS 프리뷰/터널 또는 배포 주소에서 권한과 게임 흐름을 별도로 확인해야 합니다.
 
-## AR 라이브러리 구조
-
-현재 데모는 다음 구조로 동작합니다.
-
-- 카메라: `navigator.mediaDevices.getUserMedia`
-- 이미지 마커 감지: 중앙 프레임의 세종대 지도 안내판 색상/패턴 또는 전용 포스터 표식 인식
-- AR 오브젝트: `sejongGF.glb`를 사용한 3D 기린
-- 대사창 폰트: `HakgyoansimByeolbichhaneul-B.otf`
-- 앱 흐름: React 상태 전환
-
-실서비스에 가까운 이미지 트래킹으로 확장하려면 MindAR를 붙이면 됩니다.
-
-1. 마커 후보 이미지를 `public/markers/source.png`처럼 준비합니다.
-2. MindAR Image Compiler에서 `.mind` 파일을 생성합니다.
-   - 웹 컴파일러: `https://hiukim.github.io/mind-ar-js-doc/tools/compile`
-   - 또는 `mind-ar` 패키지의 compiler 도구 사용
-3. 생성한 파일을 `public/markers/campus-drop.mind`로 저장합니다.
-4. 스캔 화면에서 현재 색상 패턴 감지 로직을 MindAR의 `MindARThree` 초기화 코드로 교체합니다.
-5. `anchor.group`에 `sejongGF.glb` 모델을 붙이면 이미지 위에 기린 오브젝트가 고정됩니다.
-
-MindAR 예시 흐름:
-
-```ts
-const mindarThree = new MindARThree({
-  container: scanContainer,
-  imageTargetSrc: "/markers/campus-drop.mind",
-});
-const { renderer, scene, camera } = mindarThree;
-const anchor = mindarThree.addAnchor(0);
-anchor.group.add(giraffeGroup);
-await mindarThree.start();
-renderer.setAnimationLoop(() => renderer.render(scene, camera));
-```
-
-## 시연 팁
-
-- 지도 안내판의 밝은 패널과 청록색 지도 영역이 중앙 프레임 안에 들어오면 더 빨리 인식됩니다.
-- 전용 포스터는 초록/노랑 표식이 프레임 중앙에 들어오면 인식됩니다.
-- 밤에는 안내판 조명 반사가 심하지 않게 약간 비스듬히 서서 비추면 안정적입니다.
-- 미션 정답은 `428`입니다.
+게임의 경로·퍼즐·장면 전환·정적 자산·전역 게임 CSS는 포털 작업과 분리해 유지합니다.
