@@ -23,9 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
   const metadataBase = new URL(`${protocol}://${host}`);
-  const title = "Campus Drop | 캠퍼스를 탈출 게임으로";
+  const title = "Campus Drop | 캠퍼스를 함께 발견하는 방법";
   const description =
-    "익숙한 캠퍼스 공간을 단서와 이야기로 바꾸는 현장형 방탈출 경험, Campus Drop.";
+    "공통 관심사로 탐험대를 만들고, 캠퍼스의 사람·장소·이야기를 직접 발견하는 Campus Drop.";
   const socialImage = new URL("/og.png", metadataBase).toString();
 
   return {
