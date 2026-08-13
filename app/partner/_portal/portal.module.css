@@ -1,0 +1,101 @@
+.portal {
+  --portal-ink: #15231e;
+  --portal-muted: #61716a;
+  --portal-surface: #fffefa;
+  --portal-ground: #f2f5ed;
+  --portal-line: #dce3d9;
+  --portal-green: #155e48;
+  --portal-lime: #dff269;
+  min-height: 100svh;
+  padding: 18px 16px 46px;
+  color: var(--portal-ink);
+  background: var(--portal-ground);
+}
+
+.shell { width: min(100%, 960px); margin: 0 auto; }
+
+.header { display: flex; align-items: center; justify-content: space-between; min-height: 50px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; color: var(--portal-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
+.brandMark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; color: white; background: var(--portal-green); font-size: 15px; font-weight: 900; }
+.portalLabel { color: var(--portal-muted); font-size: 12px; font-weight: 750; }
+
+.integrationNotice { display: grid; gap: 4px; margin: 20px 0 16px; padding: 14px 15px; border: 1px solid #e3d789; border-radius: 14px; color: #4e461b; background: #fffbe0; font-size: 12px; line-height: 1.5; }
+.integrationNotice strong { font-size: 12px; }
+
+.nav { display: flex; gap: 6px; margin: 0 -16px; padding: 0 16px 3px; overflow-x: auto; border-bottom: 1px solid var(--portal-line); scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.navLink, .activeNavLink { flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--portal-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
+.activeNavLink { border-bottom-color: var(--portal-green); color: var(--portal-green); }
+.navLink:focus-visible, .activeNavLink:focus-visible, .brand:focus-visible { outline: 3px solid #7aa87c; outline-offset: 3px; }
+
+.pageHeading { padding: 30px 0 22px; }
+.pageHeading p { margin: 0 0 8px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.pageHeading h1 { margin: 0; font-size: clamp(29px, 8vw, 42px); letter-spacing: -.07em; line-height: 1.05; }
+.pageHeading span { display: block; margin-top: 10px; color: var(--portal-muted); font-size: 14px; line-height: 1.55; }
+
+.metricGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.metricCard { min-height: 150px; padding: 17px; border: 1px solid var(--portal-line); border-radius: 18px; background: var(--portal-surface); }
+.metricCard:first-child { grid-column: span 2; color: #123a2d; border-color: #b5d18a; background: var(--portal-lime); }
+.metricCard span { display: block; font-size: 12px; font-weight: 780; }
+.metricCard strong { display: block; margin: 23px 0 5px; font-size: clamp(33px, 10vw, 46px); letter-spacing: -.08em; line-height: .9; }
+.metricCard small { color: var(--portal-muted); font-size: 11px; line-height: 1.4; }
+.metricCard:first-child small { color: #426054; }
+
+.section { margin-top: 30px; }
+.sectionHeader { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+.sectionHeader h2 { margin: 0; font-size: 19px; letter-spacing: -.05em; }
+.sectionHeader a { color: var(--portal-green); font-size: 12px; font-weight: 800; text-decoration: none; }
+
+.panel, .listItem { border: 1px solid var(--portal-line); border-radius: 17px; background: var(--portal-surface); }
+.panel { padding: 16px; }
+.stack { display: grid; gap: 9px; }
+.listItem { padding: 16px; }
+.itemMeta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--portal-muted); font-size: 11px; }
+.itemTitle { margin: 6px 0 0; font-size: 15px; font-weight: 800; letter-spacing: -.035em; }
+.itemText { margin: 8px 0 0; color: var(--portal-muted); font-size: 13px; line-height: 1.55; }
+.newBadge, .statusBadge { display: inline-flex; align-items: center; width: max-content; padding: 4px 7px; border-radius: 999px; font-size: 10px; font-weight: 850; white-space: nowrap; }
+.newBadge { color: #315225; background: #dff269; }
+.statusBadge { color: #346055; background: #e5f0e7; }
+.statusSoldOut { color: #76572b; background: #fff0ce; }
+.statusDeletePending { color: #7a4148; background: #ffe6e8; }
+
+.couponList { display: grid; gap: 10px; }
+.couponCard { padding: 17px; border: 1px solid var(--portal-line); border-radius: 18px; background: var(--portal-surface); }
+.couponTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.couponName { margin: 0; font-size: 16px; letter-spacing: -.045em; }
+.couponBenefit { margin: 8px 0 16px; color: var(--portal-muted); font-size: 13px; line-height: 1.5; }
+.couponMetrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 14px; border-top: 1px solid #e9ede5; }
+.couponMetrics span { display: block; color: var(--portal-muted); font-size: 10px; }
+.couponMetrics strong { display: block; margin-top: 4px; font-size: 14px; letter-spacing: -.035em; }
+
+.proposalType { margin: 0 0 8px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .08em; }
+.proposalActions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.acceptButton, .rejectButton { min-height: 43px; border: 0; border-radius: 11px; font-size: 13px; font-weight: 850; }
+.acceptButton { color: #0e3428; background: var(--portal-lime); }
+.rejectButton { color: #684047; background: #f4e9e9; }
+.acceptButton:disabled, .rejectButton:disabled { cursor: not-allowed; opacity: .72; }
+.actionNote { margin: 11px 1px 0; color: #7b7040; font-size: 11px; line-height: 1.5; }
+
+.authPage { min-height: 100svh; padding: 22px 16px 44px; color: var(--portal-ink); background: var(--portal-ground); }
+.authShell { width: min(100%, 480px); margin: 0 auto; }
+.backLink { display: inline-flex; padding: 9px 0; color: var(--portal-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
+.authCard { margin-top: 58px; padding: 24px 19px; border: 1px solid var(--portal-line); border-radius: 22px; background: var(--portal-surface); box-shadow: 0 16px 35px rgba(34, 57, 43, .06); }
+.authEyebrow { margin: 0 0 10px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .13em; }
+.authCard h1 { margin: 0; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
+.authCard > p:not(.authEyebrow) { margin: 13px 0 23px; color: var(--portal-muted); font-size: 14px; line-height: 1.6; }
+.authForm { display: grid; gap: 14px; }
+.authForm label { display: grid; gap: 7px; color: #33473d; font-size: 12px; font-weight: 800; }
+.authForm input { width: 100%; min-height: 47px; padding: 12px; border: 1px solid #cad6c9; border-radius: 10px; color: var(--portal-ink); background: white; font: inherit; }
+.authForm input:disabled { color: #8a948e; background: #f2f4f0; }
+.authDisabledButton { min-height: 48px; margin-top: 5px; border: 0; border-radius: 12px; color: #6f776f; background: #e8ece6; font-size: 14px; font-weight: 850; cursor: not-allowed; }
+.authHelp { margin: 16px 0 0; color: #6c724e; font-size: 12px; line-height: 1.55; }
+.tokenBox { margin-top: 19px; padding: 14px; border: 1px solid #e3d789; border-radius: 13px; color: #544e28; background: #fffbe2; font-size: 12px; line-height: 1.55; }
+
+@media (min-width: 720px) {
+  .portal { padding: 28px 28px 70px; }
+  .nav { margin: 0; padding: 0; }
+  .metricGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .metricCard:first-child { grid-column: auto; }
+  .couponList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .couponCard:first-child { grid-column: span 2; }
+}
