@@ -52,6 +52,9 @@
 .landing-brand {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   gap: 10px;
   color: inherit;
   font-weight: 800;
@@ -63,7 +66,7 @@
 .landing-brand img { border-radius: 14px; }
 
 .landing-nav { display: flex; align-items: center; gap: clamp(8px, 2vw, 18px); }
-.landing-nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; color: inherit; font-size: 13px; font-weight: 800; line-height: 1.2; text-decoration: none; }
+.landing-nav a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: inherit; font-size: 13px; font-weight: 800; line-height: 1.2; text-decoration: none; }
 .landing-nav a:last-child { padding: 10px 14px; border: 1px solid rgba(17, 31, 38, .26); border-radius: 999px; }
 
 .landing-hero {
@@ -140,7 +143,7 @@
 
 .partner-page { min-height: 100svh; color: var(--landing-ink); background: var(--landing-paper); }
 .partner-header { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 24px clamp(22px, 6vw, 92px); }
-.partner-game-link { color: var(--landing-ink); font-size: 13px; font-weight: 800; text-decoration: none; }
+.partner-game-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 8px 12px; color: var(--landing-ink); font-size: 13px; font-weight: 800; text-decoration: none; }
 .partner-hero { max-width: 1180px; margin: clamp(60px, 9vw, 110px) auto clamp(64px, 9vw, 110px); padding: 0 clamp(22px, 6vw, 92px); }
 .partner-hero h1 { max-width: 850px; }
 .partner-hero > p:not(.landing-eyebrow) { max-width: 520px; margin: 25px 0 0; color: #596960; font-size: 17px; line-height: 1.65; }
