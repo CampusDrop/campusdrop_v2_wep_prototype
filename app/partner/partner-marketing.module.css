@@ -10,7 +10,7 @@
 .hero h1 { max-width: 750px; margin: 0; font-size: clamp(47px, 6vw, 76px); font-weight: 850; line-height: 1.06; letter-spacing: -.078em; }
 .hero h1 em { color: var(--blue); font-style: normal; }
 .lede { max-width: 520px; margin: 26px 0 0; color: var(--subtle-ink); font-size: 17px; line-height: 1.7; letter-spacing: -.025em; }
-.heroActions, .closingActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.heroActions, .closingActions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
 .primaryAction, .closingPrimary { display: inline-flex; align-items: center; justify-content: center; gap: 22px; min-width: 44px; min-height: 56px; padding: 15px 21px; border-radius: 15px; color: #fff; background: var(--blue); box-shadow: 0 10px 20px rgba(52, 105, 222, .18); font-size: 15px; font-weight: 800; text-decoration: none; }
 .primaryAction span, .closingPrimary span { font-size: 20px; line-height: 1; }
 .secondaryAction { padding: 10px 13px; }
@@ -76,7 +76,7 @@
   .eyebrow { margin-bottom: 13px; font-size: 10px; }
   .hero h1 { font-size: clamp(40px, 11.9vw, 50px); line-height: 1.08; }
   .lede { max-width: 31ch; margin-top: 19px; font-size: 15px; }
-  .heroActions { display: grid; gap: 7px; margin-top: 26px; }
+  .heroActions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; margin-top: 26px; }
   .primaryAction, .secondaryAction { width: 100%; min-height: 54px; }
   .primaryAction { border-radius: 14px; }
   .heroPanel { min-height: 325px; padding: 26px; border-radius: 25px; }
@@ -96,7 +96,7 @@
   .processList li { padding: 23px; border-radius: 20px; }
   .closing { padding: 79px 16px max(79px, env(safe-area-inset-bottom)); }
   .closing > p:not(.eyebrow) { margin-top: 18px; font-size: 15px; }
-  .closingActions { display: grid; gap: 7px; margin-top: 28px; }
+  .closingActions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; margin-top: 28px; }
   .closingPrimary, .closingLogin { width: 100%; min-height: 54px; }
   .closingPrimary { border-radius: 14px; }
 }

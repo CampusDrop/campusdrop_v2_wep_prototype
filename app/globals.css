@@ -40,7 +40,7 @@
 .landing-hero h1, .partner-hero h1 { margin: 0; font-size: clamp(46px, 6.2vw, 78px); font-weight: 850; line-height: .97; letter-spacing: -.08em; }
 .landing-hero h1 em, .partner-hero h1 em { color: #69913f; font-family: "HakgyoansimByeol", var(--font-geist-sans), sans-serif; font-style: normal; letter-spacing: -.045em; }
 .landing-lede { max-width: 500px; margin: 25px 0 0; color: #526159; font-size: clamp(15px, 1.45vw, 18px); line-height: 1.65; }
-.landing-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
+.landing-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; margin-top: 34px; }
 .landing-action, .partner-contact-action { display: inline-flex; align-items: center; justify-content: center; gap: 15px; min-width: 44px; min-height: 52px; padding: 13px 19px; border-radius: 999px; font-size: 14px; font-weight: 850; text-decoration: none; }
 .landing-action-primary, .partner-contact-action { color: #10231f; background: var(--landing-acid); }
 .landing-action-primary span, .partner-contact-action span { font-size: 18px; }
@@ -74,6 +74,7 @@
 
 .landing-first-case { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(310px, .9fr); align-items: center; gap: clamp(32px, 7vw, 108px); max-width: 1180px; margin: 0 auto clamp(80px, 12vw, 150px); }
 .landing-first-case > div:first-child > p:not(.landing-eyebrow) { max-width: 480px; margin: 20px 0 27px; color: #596960; font-size: 16px; line-height: 1.65; }
+.landing-first-case > div:first-child > .landing-action { display: flex; width: fit-content; margin-inline: auto; }
 .landing-case-placeholder { min-height: 390px; }
 
 .landing-partner-callout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; max-width: 1180px; margin: 0 auto; padding: clamp(36px, 6vw, 74px); border-radius: 30px 30px 0 0; color: #eff6e9; background: #173c32; }
@@ -81,6 +82,7 @@
 .landing-partner-callout > div:last-child { align-self: end; }
 .landing-partner-callout > div:last-child > p { max-width: 355px; margin: 0 0 22px; color: #cbd7ca; line-height: 1.65; }
 .landing-inline-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 10px 0; color: var(--landing-acid); font-size: 14px; font-weight: 850; text-decoration: none; }
+.landing-partner-callout .landing-inline-link { display: flex; width: fit-content; margin-inline: auto; }
 .landing-inline-link span { margin-left: 8px; }
 .landing-footer { display: flex; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 20px 0 27px; color: #75847c; font-size: 11px; }
 
