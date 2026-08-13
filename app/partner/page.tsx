@@ -1,13 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const partnerMetaTitle = "Campus Drop 제휴 | 대학생 방문과 매장을 연결합니다";
+const partnerMetaDescription =
+  "지역 매장과 대학생을 연결하는 Campus Drop 제휴 안내입니다. 방문 현황은 쿠폰 사용 완료 기준으로 확인합니다.";
+const partnerMetaImage = "/og.png";
+
 export const metadata: Metadata = {
-  title: "파트너 제휴 | Campus Drop",
-  description: "Campus Drop과 함께 대학생 손님과 매장을 연결하는 제휴 프로그램을 소개합니다.",
+  title: partnerMetaTitle,
+  description: partnerMetaDescription,
+  openGraph: {
+    title: partnerMetaTitle,
+    description: partnerMetaDescription,
+    type: "website",
+    images: [{ url: partnerMetaImage, width: 1200, height: 630, alt: "Campus Drop 제휴 | 대학생 방문과 매장을 연결합니다" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: partnerMetaTitle,
+    description: partnerMetaDescription,
+    images: [partnerMetaImage],
+  },
 };
 
 const partnerBenefits = [
-  ["01", "대학생과 만나는 새로운 접점", "Campus Drop을 이용하는 대학생에게 매장 쿠폰이 노출됩니다. 관심사가 맞는 탐험대의 활동 맥락에 맞춰 자연스럽게 연결됩니다."],
+  ["01", "대학생과 만나는 새로운 접점", "공통 관심사가 있는 탐험대가 활동을 완료하면, 매장 카테고리에 연결된 쿠폰이 보상 후보로 선정됩니다. 학생에게 일괄 노출하거나 방문을 보장하는 방식은 아닙니다."],
   ["02", "매장 단위로 분명하게 관리", "매장 하나당 제휴업체 계정 하나를 사용합니다. 다른 매장과 데이터가 섞이지 않도록 매장별로 독립 관리됩니다."],
   ["03", "방문으로 확인하는 성과", "쿠폰이 발급된 수가 아니라 매장에서 사용 완료된 수만 방문자로 집계합니다. 오늘·이번 달·누적 현황을 포털에서 확인할 수 있습니다."],
 ] as const;
