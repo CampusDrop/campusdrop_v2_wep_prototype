@@ -14,7 +14,7 @@ export default async function PartnerCouponsPage() {
       currentPath="/partner/coupons"
       description="쿠폰별 발급 가능 수량과 실제 사용 완료 수를 확인합니다."
       title="쿠폰 현황"
-    >
+      renderContent={() => <>
       <div className={styles.couponList}>
         {couponsExample.map((coupon) => {
           const stateClass = coupon.state === "soldOut"
@@ -38,6 +38,7 @@ export default async function PartnerCouponsPage() {
           );
         })}
       </div>
-    </PartnerPortalShell>
+      </>}
+    />
   );
 }

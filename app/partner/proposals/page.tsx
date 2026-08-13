@@ -16,7 +16,7 @@ export default async function PartnerProposalsPage() {
       currentPath="/partner/proposals"
       description="운영자가 보낸 쿠폰 제안은 수락 또는 거절할 수 있습니다."
       title="제안 확인"
-    >
+      renderContent={() => <>
       <div className={styles.stack}>
         {proposalsExample.map((proposal) => (
           <article className={styles.listItem} key={proposal.id}>
@@ -31,6 +31,7 @@ export default async function PartnerProposalsPage() {
         ))}
       </div>
       <EmptyActionNote>수락·거절은 서버에서 업체 소속과 대기 상태를 다시 검증한 뒤 반영되어야 합니다.</EmptyActionNote>
-    </PartnerPortalShell>
+      </>}
+    />
   );
 }

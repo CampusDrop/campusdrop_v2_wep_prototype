@@ -9,9 +9,9 @@ export default async function PartnerDashboardPage() {
   return (
     <PartnerPortalShell
       currentPath="/partner/dashboard"
-      description={`${partnerStoreExample.name} · ${partnerStoreExample.category}의 방문자와 운영 소식을 확인합니다.`}
+      description="서버가 확인한 매장 방문자와 운영 소식을 표시합니다."
       title="대시보드"
-    >
+      renderContent={() => <>
       <section className={styles.metricGrid} aria-label="방문자 현황">
         <MetricCard description="쿠폰 사용 완료 기준" label="오늘 방문자" value={`${partnerStoreExample.todayVisitors}명`} />
         <MetricCard description="KST 매월 1일 00:00부터" label="이번 달 방문자" value={`${partnerStoreExample.monthVisitors}명`} />
@@ -45,6 +45,7 @@ export default async function PartnerDashboardPage() {
           ))}
         </div>
       </section>
-    </PartnerPortalShell>
+      </>}
+    />
   );
 }

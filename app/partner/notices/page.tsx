@@ -10,7 +10,7 @@ export default async function PartnerNoticesPage() {
       currentPath="/partner/notices"
       description="Campus Drop 운영진이 발행한 제휴업체 대상 공지입니다."
       title="공지"
-    >
+      renderContent={() => <>
       <div className={styles.stack}>
         {noticesExample.map((notice) => (
           <article className={styles.listItem} key={notice.id}>
@@ -20,6 +20,7 @@ export default async function PartnerNoticesPage() {
           </article>
         ))}
       </div>
-    </PartnerPortalShell>
+      </>}
+    />
   );
 }

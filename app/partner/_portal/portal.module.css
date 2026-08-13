@@ -90,6 +90,7 @@
 .authDisabledButton { min-height: 48px; margin-top: 5px; border: 0; border-radius: 12px; color: #6f776f; background: #e8ece6; font-size: 14px; font-weight: 850; cursor: not-allowed; }
 .authHelp { margin: 16px 0 0; color: #6c724e; font-size: 12px; line-height: 1.55; }
 .tokenBox { margin-top: 19px; padding: 14px; border: 1px solid #e3d789; border-radius: 13px; color: #544e28; background: #fffbe2; font-size: 12px; line-height: 1.55; }
+.boundaryLoginLink { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: 16px; border-radius: 12px; color: #123a2d; background: var(--portal-lime); font-size: 14px; font-weight: 850; text-decoration: none; }
 
 @media (min-width: 720px) {
   .portal { padding: 28px 28px 70px; }

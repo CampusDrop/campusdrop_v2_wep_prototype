@@ -14,14 +14,22 @@ export async function PartnerPortalShell({
   currentPath,
   title,
   description,
-  children,
+  renderContent,
 }: {
   currentPath: string;
   title: string;
   description: string;
-  children: ReactNode;
+  /**
+   * Content is a lazy callback so no tenant data is even built for an
+   * unauthenticated/integration-required request.
+   */
+  renderContent: () => ReactNode;
 }) {
   const access = await getPartnerPortalAccess();
+
+  if (access.status !== "authorized") {
+    return <PartnerPortalUnavailable />;
+  }
 
   return (
     <main className={styles.portal}>
@@ -33,15 +41,6 @@ export async function PartnerPortalShell({
           </Link>
           <span className={styles.portalLabel}>파트너 포털</span>
         </header>
-
-        <div className={styles.integrationNotice} role="status">
-          <strong>서버 인증 연동 전 예시 화면입니다.</strong>
-          <span>
-            실제 이용은 HttpOnly 세션과 서버의 업체 소속 검증이 연결된 뒤에만 가능합니다.
-          </span>
-        </div>
-
-        {access.status === "integration-required" ? null : null}
 
         <nav className={styles.nav} aria-label="파트너 포털 메뉴">
           {navigation.map(([href, label]) => (
@@ -57,12 +56,33 @@ export async function PartnerPortalShell({
         </nav>
 
         <section className={styles.pageHeading}>
-          <p>PARTNER PORTAL · SAMPLE</p>
+          <p>PARTNER PORTAL</p>
           <h1>{title}</h1>
           <span>{description}</span>
         </section>
 
-        {children}
+        {renderContent()}
+      </div>
+    </main>
+  );
+}
+
+function PartnerPortalUnavailable() {
+  return (
+    <main className={styles.authPage}>
+      <div className={styles.authShell}>
+        <Link className={styles.backLink} href="/partner">← 제휴 안내로 돌아가기</Link>
+        <section className={styles.authCard}>
+          <p className={styles.authEyebrow}>PARTNER PORTAL</p>
+          <h1>로그인 연동을 준비하고 있어요.</h1>
+          <p>
+            이 페이지는 서버가 HttpOnly 세션, 파트너 역할, 매장 소속을 확인한 뒤에만 열립니다.
+          </p>
+          <div className={styles.tokenBox}>
+            현재는 서버 인증 연결 전이므로 매장·쿠폰·방문자·제안·공지 정보를 표시하지 않습니다.
+          </div>
+          <Link className={styles.boundaryLoginLink} href="/partner/login">로그인 화면 보기</Link>
+        </section>
       </div>
     </main>
   );
