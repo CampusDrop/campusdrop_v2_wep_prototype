@@ -19,7 +19,7 @@ export default function HomePage() {
       <header className="landing-header">
         <Link className="landing-brand" href="/" aria-label="Campus Drop 홈">
           <span className="landing-brand-placeholder" aria-hidden="true" />
-          <span>Campus Drop</span>
+          <span className="landing-brand-name">Campus Drop</span>
         </Link>
         <nav className="landing-nav" aria-label="주요 메뉴">
           <Link href="#campus-drop">Campus Drop</Link>

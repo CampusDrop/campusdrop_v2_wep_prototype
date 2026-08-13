@@ -149,7 +149,7 @@
 @media (max-width: 480px) {
   .landing-page { padding-right: max(16px, env(safe-area-inset-right)); padding-left: max(16px, env(safe-area-inset-left)); }
   .landing-brand { gap: 8px; }
-  .landing-brand > span { display: none; }
+  .landing-brand-name { display: none; }
   .landing-header { align-items: center; }
   .landing-nav { gap: 6px; }
   .landing-nav a { min-height: 44px; padding: 8px 7px; font-size: 12px; white-space: nowrap; }
