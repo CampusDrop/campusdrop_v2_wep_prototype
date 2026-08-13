@@ -95,7 +95,7 @@
 
 .landing-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
 .landing-action,
-.partner-contact-action { display: inline-flex; align-items: center; justify-content: center; gap: 15px; min-height: 52px; padding: 13px 19px; border-radius: 999px; font-size: 14px; font-weight: 850; text-decoration: none; }
+.partner-contact-action { display: inline-flex; align-items: center; justify-content: center; gap: 15px; min-width: 44px; min-height: 52px; padding: 13px 19px; border-radius: 999px; font-size: 14px; font-weight: 850; text-decoration: none; }
 .landing-action-primary,
 .partner-contact-action { color: #10231f; background: var(--landing-acid); }
 .landing-action-primary span,
@@ -137,7 +137,7 @@
 .landing-partner-callout .landing-eyebrow { color: #a7c7a8; }
 .landing-partner-callout > div:last-child { align-self: end; }
 .landing-partner-callout > div:last-child > p { max-width: 355px; margin: 0 0 22px; color: #cbd7ca; line-height: 1.65; }
-.landing-inline-link { color: var(--landing-acid); font-size: 14px; font-weight: 850; text-decoration: none; }
+.landing-inline-link { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 10px 0; color: var(--landing-acid); font-size: 14px; font-weight: 850; text-decoration: none; }
 .landing-inline-link span { margin-left: 8px; }
 .landing-footer { display: flex; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 20px 0 27px; color: #75847c; font-size: 11px; }
 
