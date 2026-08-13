@@ -17,22 +17,22 @@ export default function HomePage() {
           <span>Campus Drop</span>
         </Link>
         <nav className="landing-nav" aria-label="주요 메뉴">
-          <Link href="/games/giraffe">방탈출 게임</Link>
-          <Link href="/partner">파트너 제휴</Link>
+          <Link href="/games/giraffe">게임</Link>
+          <Link href="/partner">제휴 안내</Link>
         </nav>
       </header>
 
       <section className="landing-hero" aria-labelledby="landing-title">
         <div className="landing-hero-copy">
           <p className="landing-eyebrow">CAMPUS ESCAPE EXPERIENCE</p>
-          <h1 id="landing-title">캠퍼스의 평범한 하루에,<br /><em>미스터리</em>를 떨어뜨리다.</h1>
+          <h1 id="landing-title">오늘의 캠퍼스가<br /><em>게임</em>이 되는 순간</h1>
           <p className="landing-lede">
-            Campus Drop은 익숙한 학교 공간을 단서와 이야기로 바꾸는
-            오프라인 방탈출 경험입니다.
+            친구들과 캠퍼스를 걸으며 단서를 찾고,
+            실제 장소에서 사건을 해결해 보세요.
           </p>
           <div className="landing-actions">
             <Link className="landing-action landing-action-primary" href="/games/giraffe">
-              사건 조사 시작하기 <span aria-hidden="true">↗</span>
+              기린 목격 사건 시작하기 <span aria-hidden="true">↗</span>
             </Link>
             <Link className="landing-action landing-action-secondary" href="/partner">
               캠퍼스 파트너 되기 <span aria-hidden="true">→</span>
