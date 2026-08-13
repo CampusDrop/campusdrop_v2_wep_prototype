@@ -63,7 +63,7 @@
 .landing-brand img { border-radius: 14px; }
 
 .landing-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 25px); }
-.landing-nav a { color: inherit; font-size: 13px; font-weight: 800; text-decoration: none; }
+.landing-nav a { color: inherit; font-size: 13px; font-weight: 800; line-height: 1.2; text-decoration: none; }
 .landing-nav a:last-child { padding: 10px 14px; border: 1px solid rgba(17, 31, 38, .26); border-radius: 999px; }
 
 .landing-hero {
@@ -98,6 +98,10 @@
 .landing-action-primary span,
 .partner-contact-action span { font-size: 18px; }
 .landing-action-secondary { border: 1px solid rgba(16, 35, 31, .25); color: inherit; }
+.landing-action:focus-visible,
+.landing-nav a:focus-visible,
+.landing-inline-link:focus-visible,
+.partner-game-link:focus-visible { outline: 3px solid #69913f; outline-offset: 4px; }
 
 .landing-hero-visual { position: relative; min-height: min(53vw, 580px); overflow: hidden; border-radius: 32px; background: #17302a; box-shadow: 0 30px 56px rgba(22, 47, 37, .2); }
 .landing-hero-visual > img { object-fit: cover; object-position: center; }
@@ -173,6 +177,45 @@
   .partner-hero,
   .partner-options { padding-right: 18px; padding-left: 18px; }
   .partner-hero { margin-top: 65px; }
+}
+
+/* Public routes remain comfortable on compact phones without affecting game UI. */
+@media (max-width: 480px) {
+  .landing-page { padding-right: 16px; padding-left: 16px; }
+  .landing-brand { gap: 8px; }
+  .landing-brand > span { display: none; }
+  .landing-header { align-items: center; }
+  .landing-nav { gap: 8px; }
+  .landing-nav a { font-size: 11px; white-space: nowrap; }
+  .landing-nav a:last-child { padding: 8px 9px; }
+  .landing-hero { gap: 30px; margin-top: 48px; margin-bottom: 70px; }
+  .landing-eyebrow { font-size: 10px; letter-spacing: .12em; }
+  .landing-hero h1,
+  .partner-hero h1 { font-size: clamp(40px, 13vw, 52px); letter-spacing: -.075em; }
+  .landing-lede,
+  .partner-hero > p:not(.landing-eyebrow) { margin-top: 20px; font-size: 15px; }
+  .landing-actions { display: grid; gap: 10px; margin-top: 28px; }
+  .landing-action { width: 100%; min-height: 52px; }
+  .landing-hero-visual { min-height: min(122vw, 450px); border-radius: 24px; }
+  .landing-case-tag { top: 16px; left: 16px; font-size: 9px; }
+  .landing-visual-caption { right: 17px; bottom: 17px; left: 17px; }
+  .landing-visual-caption strong { font-size: 22px; }
+  .landing-intro { margin-bottom: 72px; text-align: left; }
+  .landing-intro > p:last-child { margin-right: 0; margin-left: 0; }
+  .landing-section-heading { margin-bottom: 22px; }
+  .landing-steps { margin-bottom: 74px; }
+  .landing-steps li { padding: 23px; }
+  .landing-partner-callout { padding: 30px 24px; }
+  .landing-footer { gap: 12px; font-size: 10px; }
+  .partner-header { padding-right: 16px; padding-left: 16px; }
+  .partner-game-link { font-size: 12px; white-space: nowrap; }
+  .partner-hero,
+  .partner-options { padding-right: 16px; padding-left: 16px; }
+  .partner-hero { margin-top: 48px; margin-bottom: 64px; }
+  .partner-image-band { height: 300px; }
+  .partner-option-grid { gap: 12px; }
+  .partner-option-grid article { min-height: 0; padding: 23px; }
+  .partner-next { padding-right: 16px; padding-left: 16px; }
 }
 
 @font-face {
