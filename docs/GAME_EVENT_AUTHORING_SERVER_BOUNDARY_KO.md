@@ -22,6 +22,14 @@
 
 ## 제작 및 이벤트 데이터 계약
 
+### 입력 DTO와 서버 응답 엔터티
+
+- 생성 요청은 ID 없는 입력 DTO를 사용한다. 게임은 `CreateGameInput`, 이벤트는 `CreateEventInput`으로 구분하며, 입력 DTO는 목록이나 발행 대상이 될 수 없다.
+- `POST` 생성과 `GET` 목록은 모두 서버가 발급한 안정적인 ID와 발행 상태를 가진 엔터티를 반환한다. 게임은 `id: GameId`, `publicationStatus: DRAFT | PUBLISHED`, 이벤트는 `id: EventId`, `publicationStatus: DRAFT | PUBLISHED | ENDED`를 반드시 포함한다.
+- 이벤트 생성 입력의 `gameId`는 문자열을 새로 만들지 않고, 앞선 게임 생성/목록 응답의 `GameId`만 사용한다. 연결할 수량 제한 쿠폰도 서버가 허용한 목록에서 받은 `LimitedCouponId`만 사용한다.
+- 발행 API는 ID 문자열이나 입력 DTO를 받지 않는다. `publishGame`은 목록/생성 응답에서 받은 `DraftGame`, `publishEvent`는 목록/생성 응답에서 받은 `DraftEvent`만 받으며, 발행 응답은 각각 `PublishedGame`, `PublishedEvent`를 반환한다. 서버도 대상 ID의 존재, ID 종류, 현재 `DRAFT` 상태를 재검증한다.
+- ID는 응답 이후에도 변하지 않는 서버 식별자여야 하며, `createdAtKst`, `updatedAtKst`도 응답 엔터티에 포함한다. 클라이언트는 ID를 추측·합성·재활용하지 않는다.
+
 ### 게임
 
 - 게임 제작 시 `minPlayers`, `maxPlayers`를 함께 저장한다. `minPlayers >= 1`, `maxPlayers >= minPlayers`를 서버에서 검증한다.
