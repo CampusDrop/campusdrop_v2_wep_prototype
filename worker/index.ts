@@ -5,7 +5,7 @@ import handler from "vinext/server/app-router-entry";
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
-  IMAGES: {
+  IMAGES?: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
         output(options: { format: string; quality: number }): Promise<{ response(): Response }>;
@@ -33,10 +33,16 @@ const worker = {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(request, {
         fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
-        transformImage: async (body, { width, format, quality }) => {
-          const result = await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
-          return result.response();
-        },
+        // Miniflare can serve the ASSETS binding locally without a Cloudflare
+        // Images binding. Omitting this optional transform makes Vinext return
+        // a secured source-image response in development; deployed Workers
+        // continue to optimize when their IMAGES binding is present.
+        transformImage: env.IMAGES
+          ? async (body, { width, format, quality }) => {
+              const result = await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
+              return result.response();
+            }
+          : undefined,
       }, allowedWidths);
     }
 
