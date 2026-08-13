@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const productSteps = [
@@ -19,8 +18,8 @@ export default function HomePage() {
       <div className="landing-grain" aria-hidden="true" />
       <header className="landing-header">
         <Link className="landing-brand" href="/" aria-label="Campus Drop 홈">
-          <Image src="/campusdrop_logo.png" alt="" width={44} height={44} priority />
-          <span>Campus Drop</span>
+          <span className="landing-brand-placeholder" aria-hidden="true" />
+          <span className="landing-brand-name">Campus Drop</span>
         </Link>
         <nav className="landing-nav" aria-label="주요 메뉴">
           <Link href="#campus-drop">Campus Drop</Link>
@@ -46,22 +45,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="landing-hero-map" aria-label="관심사로 연결된 캠퍼스 탐험의 흐름">
-          <div className="landing-map-orbit landing-map-orbit-one" aria-hidden="true" />
-          <div className="landing-map-orbit landing-map-orbit-two" aria-hidden="true" />
-          <div className="landing-map-line landing-map-line-one" aria-hidden="true" />
-          <div className="landing-map-line landing-map-line-two" aria-hidden="true" />
-          <div className="landing-map-pin landing-map-pin-one"><span>커피</span></div>
-          <div className="landing-map-pin landing-map-pin-two"><span>사진</span></div>
-          <div className="landing-map-pin landing-map-pin-three"><span>산책</span></div>
-          <div className="landing-map-core">
-            <span>준비 중인 경험</span>
-            <strong>탐험대</strong>
-          </div>
-          <div className="landing-map-note">
-            <span>DROP 01</span>
-            <strong>함께할 발견을 준비해요.</strong>
-          </div>
+        <div className="landing-media-placeholder landing-hero-placeholder" role="group" aria-label="Campus Drop 대표 이미지 영역">
+          <span>이미지 영역</span>
         </div>
       </section>
 
@@ -118,11 +103,8 @@ export default function HomePage() {
             첫 탐험 플레이하기 <span aria-hidden="true">↗</span>
           </Link>
         </div>
-        <div className="landing-case-card" aria-hidden="true">
-          <span className="landing-case-stamp">CASE 01</span>
-          <span className="landing-case-mark">?</span>
-          <strong>시계탑에서<br />무슨 일이 있었을까?</strong>
-          <span className="landing-case-meta">LOCATION-BASED PLAY</span>
+        <div className="landing-media-placeholder landing-case-placeholder" role="group" aria-label="첫 번째 플레이 소개 이미지 영역">
+          <span>이미지 영역</span>
         </div>
       </section>
 
