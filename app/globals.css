@@ -4791,3 +4791,49 @@ h6 {
   0%, 100% { filter: brightness(1); box-shadow: 0 18px 48px rgba(8, 16, 17, 0.28), 0 0 0 1px color-mix(in srgb, var(--drop-link-main), transparent 82%); }
   50% { filter: brightness(1.045); box-shadow: 0 20px 54px rgba(8, 16, 17, 0.3), 0 0 0 6px color-mix(in srgb, var(--drop-link-main), transparent 82%); }
 }
+
+/* The detailed maker is mounted only beneath the server-authorized editor. */
+.editor-maker-link { display: inline-flex; width: fit-content; margin-top: 14px; padding: 12px 15px; border-radius: 12px; color: #10231f; font-size: 13px; font-weight: 900; text-decoration: none; background: var(--field-amber); }
+.maker-app { min-width: 0; min-height: 100svh; color: #1c292c; background: #f3f5f1; }
+.maker-topbar { position: sticky; z-index: 5; top: 0; display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 22px; border-bottom: 1px solid #d9dfd8; background: rgba(248,250,247,.96); backdrop-filter: blur(12px); }
+.maker-brand { display: inline-flex; align-items: center; gap: 9px; color: inherit; font-size: 18px; font-weight: 850; text-decoration: none; }
+.maker-brand img { border-radius: 11px; }
+.maker-step-nav, .maker-topbar-actions { display: flex; align-items: center; gap: 10px; }
+.maker-step-nav { color: #718078; font-size: 11px; }
+.maker-step-nav a { color: inherit; text-decoration: none; }
+.maker-step-nav strong { color: #344239; }
+.maker-topbar-actions { justify-content: end; }
+.maker-topbar-actions > span { color: #718078; font-size: 11px; }
+.maker-primary-button, .maker-secondary-button, .maker-danger-button { border: 0; border-radius: 9px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 800; text-decoration: none; }
+.maker-primary-button { padding: 10px 14px; color: #14211d; background: #cbed46; }
+.maker-secondary-button { padding: 9px 11px; border: 1px solid #d4dad4; color: #506059; background: #fff; }
+.maker-danger-button { padding: 8px 10px; color: #a43e3e; background: #fff0ef; }
+.maker-identity-shell { width: min(920px, calc(100% - 40px)); margin: 0 auto; }
+.maker-identity-hero { margin: 70px 0 42px; }
+.maker-identity-hero p, .maker-editor-kicker { margin: 0 0 10px; color: #738178; font-size: 10px; font-weight: 900; letter-spacing: .13em; }
+.maker-identity-hero h1 { margin: 0; font-size: clamp(40px, 6vw, 70px); line-height: .98; letter-spacing: -.08em; }
+.maker-identity-hero > span { display: block; margin-top: 18px; color: #6c7a72; font-size: 14px; }
+.maker-identity-section, .maker-chapter-card, .maker-playtest-finish { margin-bottom: 16px; padding: 26px; border: 1px solid #dce3dc; border-radius: 18px; background: #fbfcfa; box-shadow: 0 9px 24px rgba(31,54,43,.04); }
+.maker-identity-section h2, .maker-chapter-card h2 { margin: 0 0 20px; font-size: 24px; letter-spacing: -.05em; }
+.maker-identity-grid, .maker-color-grid, .maker-field-group, .maker-content-fields { display: grid; gap: 13px; }
+.maker-wide-field { grid-column: 1 / -1; }
+.maker-title-field, .maker-summary-field, .maker-field-group, .maker-color-grid article, .maker-content-fields label { display: grid; gap: 7px; color: #435149; font-size: 12px; font-weight: 800; }
+.maker-app input, .maker-app textarea, .maker-app select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid #d4ddd4; border-radius: 9px; color: #24352b; font: inherit; background: #fff; }
+.maker-theme-picker, .maker-tone-picker, .maker-content-format-picker, .maker-content-block-list { display: flex; flex-wrap: wrap; gap: 9px; }
+.maker-theme-picker button, .maker-tone-picker button, .maker-content-format-picker button, .maker-content-block-list button, .maker-app button:not(.maker-primary-button):not(.maker-secondary-button):not(.maker-danger-button) { padding: 10px 12px; border: 1px solid #d4ddd4; border-radius: 9px; color: #344239; font: inherit; font-size: 12px; background: #fff; cursor: pointer; }
+.maker-theme-picker button.is-selected, .maker-tone-picker button.is-selected, .maker-content-format-picker button.is-selected, .maker-content-block-list button.is-selected { border-color: #9abc3b; background: #f4f8dc; }
+.maker-identity-footer, .maker-playtest-finish-actions { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 4px; }
+.maker-workspace { display: grid; min-height: calc(100svh - 68px); grid-template-columns: minmax(210px,.7fr) minmax(0,1.8fr) minmax(250px,.8fr); }
+.maker-outline, .maker-preview { padding: 22px 16px; background: #e9eee8; }
+.maker-outline { border-right: 1px solid #d9dfd8; }
+.maker-preview { border-left: 1px solid #d9dfd8; }
+.maker-editor { min-width: 0; padding: 28px; }
+.maker-scene-list, .maker-preview-flow, .maker-content-block-list { display: grid; gap: 8px; }
+.maker-scene-item { width: 100%; padding: 10px; text-align: left; }
+.maker-playtest { min-height: 100svh; background: #f3f5f1; }
+.maker-playtest-outline { padding: 22px; border-right: 1px solid #d9dfd8; background: #e9eee8; }
+.maker-playtest-outline ol { display: grid; gap: 8px; padding: 0; list-style: none; }
+.maker-playtest-outline button { width: 100%; text-align: left; }
+.maker-playtest-stage { min-width: 0; padding: 30px; }
+@media (max-width: 920px) { .maker-workspace { grid-template-columns: 190px minmax(0,1fr); } .maker-preview { grid-column: 1 / -1; border-top: 1px solid #d9dfd8; border-left: 0; } }
+@media (max-width: 680px) { .maker-topbar { align-items: flex-start; flex-wrap: wrap; padding: 13px 16px; } .maker-step-nav { order: 3; width: 100%; overflow-x: auto; } .maker-topbar-actions > span { display: none; } .maker-identity-shell { width: min(100% - 28px, 920px); } .maker-identity-hero { margin: 40px 0 30px; } .maker-identity-section, .maker-chapter-card, .maker-playtest-finish, .maker-editor { padding: 18px; } .maker-workspace { display: block; } .maker-outline, .maker-preview, .maker-playtest-outline { border: 0; border-bottom: 1px solid #d9dfd8; } .maker-identity-footer, .maker-playtest-finish-actions { align-items: stretch; flex-direction: column; } .maker-primary-button { text-align: center; } }
