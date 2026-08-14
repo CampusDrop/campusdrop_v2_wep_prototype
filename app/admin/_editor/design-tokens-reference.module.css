@@ -1,0 +1,21 @@
+.reference { margin: 0 0 22px; padding: 20px; border: 1px solid var(--color-border-default); border-radius: 20px; color: var(--color-text-primary); background: var(--color-page); }
+.heading p { margin: 0 0 8px; color: var(--color-brand-primary); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.heading h2 { margin: 0; font-size: 22px; letter-spacing: -.055em; }
+.heading > span { display: block; max-width: 620px; margin-top: 9px; color: var(--color-text-secondary); font-size: 13px; line-height: 1.55; }
+.tokenList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+.tokenList li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: center; min-height: 74px; padding: 12px; border: 1px solid var(--color-border-default); border-radius: 14px; background: var(--color-surface-subtle); }
+.brandPrimary { --reference-swatch: var(--color-brand-primary); --reference-hex: var(--color-brand-primary-hex); }
+.brandStrong { --reference-swatch: var(--color-brand-strong); --reference-hex: var(--color-brand-strong-hex); }
+.brandSoft { --reference-swatch: var(--color-brand-soft); --reference-hex: var(--color-brand-soft-hex); }
+.page { --reference-swatch: var(--color-page); --reference-hex: var(--color-page-hex); }
+.surfaceSubtle { --reference-swatch: var(--color-surface-subtle); --reference-hex: var(--color-surface-subtle-hex); }
+.textPrimary { --reference-swatch: var(--color-text-primary); --reference-hex: var(--color-text-primary-hex); }
+.textSecondary { --reference-swatch: var(--color-text-secondary); --reference-hex: var(--color-text-secondary-hex); }
+.borderDefault { --reference-swatch: var(--color-border-default); --reference-hex: var(--color-border-default-hex); }
+.swatch { width: 30px; height: 30px; border: 1px solid var(--color-border-subtle); border-radius: 9px; background: var(--reference-swatch); }
+.tokenList strong, .tokenList code, .tokenList small { display: block; }
+.tokenList strong { font-size: 13px; letter-spacing: -.025em; }
+.tokenList code { min-height: 13px; margin-top: 3px; color: var(--color-text-secondary); font-size: 11px; }
+.tokenList code::after { content: var(--reference-hex); }
+.tokenList small { grid-column: 2; color: var(--color-text-tertiary); font-size: 11px; line-height: 1.35; }
+@media (max-width: 560px) { .reference { padding: 17px; }.tokenList { grid-template-columns: 1fr; }.tokenList li { min-height: 68px; } }

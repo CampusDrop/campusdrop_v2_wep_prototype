@@ -1,0 +1,46 @@
+/* Campus Drop semantic color foundation. Game-specific colors stay isolated. */
+:root {
+  --color-brand-primary: #3182f6;
+  --color-brand-strong: #1b64d8;
+  --color-brand-soft: #edf5ff;
+  --color-accent-soft: #a2c8fb;
+  --color-accent-panel: #3578dd;
+  --color-accent-on-inverse: #9ec3ff;
+  --color-page: #ffffff;
+  --color-surface-subtle: #f5f6f8;
+  --color-surface-placeholder: #e5e7eb;
+  --color-surface-inverse: #172b4d;
+  --color-text-primary: #191f2b;
+  --color-text-secondary: #687385;
+  --color-text-tertiary: #858f9e;
+  --color-text-subtle: #7a8493;
+  --color-text-panel: #586273;
+  --color-text-panel-muted: #70798a;
+  --color-text-panel-strong: #4c5666;
+  --color-text-chip: #667183;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-muted: #bdc9df;
+  --color-border-default: #e1e6ee;
+  --color-border-strong: #cdd6e2;
+  --color-action-primary: var(--color-brand-primary);
+  --color-action-primary-hover: var(--color-brand-strong);
+  --color-action-text: #ffffff;
+  --color-focus: #82b4ff;
+  --color-overlay-white-45: rgba(255, 255, 255, .45);
+  --color-overlay-white-65: rgba(255, 255, 255, .65);
+  --color-overlay-white-72: rgba(255, 255, 255, .72);
+  --color-overlay-white-80: rgba(255, 255, 255, .8);
+  --color-border-subtle: rgba(25, 31, 43, .12);
+  --color-shadow-action: rgba(49, 130, 246, .18);
+  --color-shadow-surface: rgba(36, 47, 63, .06);
+
+  /* Read-only editor reference labels are coupled to their CSS tokens here. */
+  --color-brand-primary-hex: "#3182F6";
+  --color-brand-strong-hex: "#1B64D8";
+  --color-brand-soft-hex: "#EDF5FF";
+  --color-page-hex: "#FFFFFF";
+  --color-surface-subtle-hex: "#F5F6F8";
+  --color-text-primary-hex: "#191F2B";
+  --color-text-secondary-hex: "#687385";
+  --color-border-default-hex: "#E1E6EE";
+}
