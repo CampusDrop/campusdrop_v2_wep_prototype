@@ -122,9 +122,11 @@ export default function PartnerPage() {
 
       <section className={styles.assurance} aria-label="Campus Drop 제휴 운영 원칙">
         <div className={styles.assuranceInner}>
-          <p className={styles.eyebrow}>CLEAR BY DESIGN</p>
-          <h2>방문 숫자는<br />더 투명해야 하니까.</h2>
-          <p>쿠폰을 발급한 수가 아닙니다. 매장에서 실제로 사용 완료된 건만 방문 현황으로 보여드립니다.</p>
+          <div className={styles.assuranceCopy}>
+            <p className={styles.eyebrow}>CLEAR BY DESIGN</p>
+            <h2>방문 숫자는<br />더 투명해야 하니까.</h2>
+            <p>쿠폰을 발급한 수가 아닙니다. 매장에서 실제로 사용 완료된 건만 방문 현황으로 보여드립니다.</p>
+          </div>
           <div className={styles.assuranceCard} aria-label="방문 현황 기준">
             <span className={styles.assuranceCardMark} aria-hidden="true">✓</span>
             <div><strong>사용 완료 기준</strong><small>발급 수 ≠ 방문자 수</small></div>

@@ -154,7 +154,7 @@
   letter-spacing: -.08em;
 }
 
-.assurance > p:not(.eyebrow) {
+.assuranceCopy > p:not(.eyebrow) {
   max-width: 500px;
   margin: 24px 0 0;
   color: var(--muted);
