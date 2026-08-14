@@ -1,0 +1,12 @@
+.reference { margin: 0 0 22px; padding: 20px; border: 1px solid var(--color-border-default); border-radius: 20px; color: var(--color-text-primary); background: var(--color-page); }
+.heading p { margin: 0 0 8px; color: var(--color-brand-primary); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.heading h2 { margin: 0; font-size: 22px; letter-spacing: -.055em; }
+.heading > span { display: block; max-width: 620px; margin-top: 9px; color: var(--color-text-secondary); font-size: 13px; line-height: 1.55; }
+.tokenList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+.tokenList li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: center; min-height: 74px; padding: 12px; border: 1px solid var(--color-border-default); border-radius: 14px; background: var(--color-surface-subtle); }
+.swatch { width: 30px; height: 30px; border: 1px solid rgba(25, 31, 43, .12); border-radius: 9px; }
+.tokenList strong, .tokenList code, .tokenList small { display: block; }
+.tokenList strong { font-size: 13px; letter-spacing: -.025em; }
+.tokenList code { margin-top: 3px; color: var(--color-text-secondary); font-size: 11px; }
+.tokenList small { grid-column: 2; color: var(--color-text-tertiary); font-size: 11px; line-height: 1.35; }
+@media (max-width: 560px) { .reference { padding: 17px; }.tokenList { grid-template-columns: 1fr; }.tokenList li { min-height: 68px; } }

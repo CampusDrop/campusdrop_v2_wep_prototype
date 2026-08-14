@@ -1,0 +1,21 @@
+/* Campus Drop semantic color foundation. Game-specific colors stay isolated. */
+:root {
+  --color-brand-primary: #3182f6;
+  --color-brand-strong: #1b64d8;
+  --color-brand-soft: #edf5ff;
+  --color-page: #ffffff;
+  --color-surface-subtle: #f5f6f8;
+  --color-surface-placeholder: #e5e7eb;
+  --color-surface-inverse: #172b4d;
+  --color-text-primary: #191f2b;
+  --color-text-secondary: #687385;
+  --color-text-tertiary: #858f9e;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-muted: #bdc9df;
+  --color-border-default: #e1e6ee;
+  --color-border-strong: #cdd6e2;
+  --color-action-primary: var(--color-brand-primary);
+  --color-action-primary-hover: var(--color-brand-strong);
+  --color-action-text: #ffffff;
+  --color-focus: #82b4ff;
+}
