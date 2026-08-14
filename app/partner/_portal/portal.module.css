@@ -1,11 +1,11 @@
 .portal {
-  --portal-ink: #15231e;
-  --portal-muted: #61716a;
-  --portal-surface: #fffefa;
-  --portal-ground: #f2f5ed;
-  --portal-line: #dce3d9;
-  --portal-green: #155e48;
-  --portal-lime: #dff269;
+  --portal-ink: var(--color-text-primary);
+  --portal-muted: var(--color-text-secondary);
+  --portal-surface: var(--color-page);
+  --portal-ground: var(--color-surface-subtle);
+  --portal-line: var(--color-border-default);
+  --portal-green: var(--color-action-primary);
+  --portal-lime: var(--color-brand-soft);
   min-height: 100svh;
   padding: 18px 16px 46px;
   color: var(--portal-ink);
@@ -16,17 +16,17 @@
 
 .header { display: flex; align-items: center; justify-content: space-between; min-height: 50px; }
 .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--portal-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
-.brandMark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; color: white; background: var(--portal-green); font-size: 15px; font-weight: 900; }
+.brandMark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; color: var(--color-action-text); background: var(--portal-green); font-size: 15px; font-weight: 900; }
 .portalLabel { color: var(--portal-muted); font-size: 12px; font-weight: 750; }
 
-.integrationNotice { display: grid; gap: 4px; margin: 20px 0 16px; padding: 14px 15px; border: 1px solid #e3d789; border-radius: 14px; color: #4e461b; background: #fffbe0; font-size: 12px; line-height: 1.5; }
+.integrationNotice { display: grid; gap: 4px; margin: 20px 0 16px; padding: 14px 15px; border: 1px solid var(--color-state-notice-border); border-radius: 14px; color: var(--color-state-notice-text); background: var(--color-state-notice-background); font-size: 12px; line-height: 1.5; }
 .integrationNotice strong { font-size: 12px; }
 
 .nav { display: flex; gap: 6px; margin: 0 -16px; padding: 0 16px 3px; overflow-x: auto; border-bottom: 1px solid var(--portal-line); scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
 .navLink, .activeNavLink { flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--portal-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
 .activeNavLink { border-bottom-color: var(--portal-green); color: var(--portal-green); }
-.navLink:focus-visible, .activeNavLink:focus-visible, .brand:focus-visible { outline: 3px solid #7aa87c; outline-offset: 3px; }
+.navLink:focus-visible, .activeNavLink:focus-visible, .brand:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 
 .pageHeading { padding: 30px 0 22px; }
 .pageHeading p { margin: 0 0 8px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
@@ -35,11 +35,11 @@
 
 .metricGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .metricCard { min-height: 150px; padding: 17px; border: 1px solid var(--portal-line); border-radius: 18px; background: var(--portal-surface); }
-.metricCard:first-child { grid-column: span 2; color: #123a2d; border-color: #b5d18a; background: var(--portal-lime); }
+.metricCard:first-child { grid-column: span 2; color: var(--color-text-primary); border-color: var(--color-border-highlight); background: var(--portal-lime); }
 .metricCard span { display: block; font-size: 12px; font-weight: 780; }
 .metricCard strong { display: block; margin: 23px 0 5px; font-size: clamp(33px, 10vw, 46px); letter-spacing: -.08em; line-height: .9; }
 .metricCard small { color: var(--portal-muted); font-size: 11px; line-height: 1.4; }
-.metricCard:first-child small { color: #426054; }
+.metricCard:first-child small { color: var(--color-text-secondary); }
 
 .section { margin-top: 30px; }
 .sectionHeader { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
@@ -54,43 +54,43 @@
 .itemTitle { margin: 6px 0 0; font-size: 15px; font-weight: 800; letter-spacing: -.035em; }
 .itemText { margin: 8px 0 0; color: var(--portal-muted); font-size: 13px; line-height: 1.55; }
 .newBadge, .statusBadge { display: inline-flex; align-items: center; width: max-content; padding: 4px 7px; border-radius: 999px; font-size: 10px; font-weight: 850; white-space: nowrap; }
-.newBadge { color: #315225; background: #dff269; }
-.statusBadge { color: #346055; background: #e5f0e7; }
-.statusSoldOut { color: #76572b; background: #fff0ce; }
-.statusDeletePending { color: #7a4148; background: #ffe6e8; }
+.newBadge { color: var(--color-brand-strong); background: var(--color-brand-soft); }
+.statusBadge { color: var(--color-state-positive-text); background: var(--color-state-positive-background); }
+.statusSoldOut { color: var(--color-state-warning-text); background: var(--color-state-warning-background); }
+.statusDeletePending { color: var(--color-state-danger-text); background: var(--color-state-danger-background); }
 
 .couponList { display: grid; gap: 10px; }
 .couponCard { padding: 17px; border: 1px solid var(--portal-line); border-radius: 18px; background: var(--portal-surface); }
 .couponTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .couponName { margin: 0; font-size: 16px; letter-spacing: -.045em; }
 .couponBenefit { margin: 8px 0 16px; color: var(--portal-muted); font-size: 13px; line-height: 1.5; }
-.couponMetrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 14px; border-top: 1px solid #e9ede5; }
+.couponMetrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 14px; border-top: 1px solid var(--color-border-default); }
 .couponMetrics span { display: block; color: var(--portal-muted); font-size: 10px; }
 .couponMetrics strong { display: block; margin-top: 4px; font-size: 14px; letter-spacing: -.035em; }
 
 .proposalType { margin: 0 0 8px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .08em; }
 .proposalActions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
 .acceptButton, .rejectButton { min-height: 43px; border: 0; border-radius: 11px; font-size: 13px; font-weight: 850; }
-.acceptButton { color: #0e3428; background: var(--portal-lime); }
-.rejectButton { color: #684047; background: #f4e9e9; }
+.acceptButton { color: var(--color-action-text); background: var(--color-action-primary); }
+.rejectButton { color: var(--color-state-danger-text); background: var(--color-state-danger-background); }
 .acceptButton:disabled, .rejectButton:disabled { cursor: not-allowed; opacity: .72; }
-.actionNote { margin: 11px 1px 0; color: #7b7040; font-size: 11px; line-height: 1.5; }
+.actionNote { margin: 11px 1px 0; color: var(--color-state-notice-text); font-size: 11px; line-height: 1.5; }
 
 .authPage { min-height: 100svh; padding: 22px 16px 44px; color: var(--portal-ink); background: var(--portal-ground); }
 .authShell { width: min(100%, 480px); margin: 0 auto; }
 .backLink { display: inline-flex; padding: 9px 0; color: var(--portal-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
-.authCard { margin-top: 58px; padding: 24px 19px; border: 1px solid var(--portal-line); border-radius: 22px; background: var(--portal-surface); box-shadow: 0 16px 35px rgba(34, 57, 43, .06); }
+.authCard { margin-top: 58px; padding: 24px 19px; border: 1px solid var(--portal-line); border-radius: 22px; background: var(--portal-surface); box-shadow: 0 16px 35px var(--color-shadow-surface); }
 .authEyebrow { margin: 0 0 10px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .13em; }
 .authCard h1 { margin: 0; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
 .authCard > p:not(.authEyebrow) { margin: 13px 0 23px; color: var(--portal-muted); font-size: 14px; line-height: 1.6; }
 .authForm { display: grid; gap: 14px; }
-.authForm label { display: grid; gap: 7px; color: #33473d; font-size: 12px; font-weight: 800; }
-.authForm input { width: 100%; min-height: 47px; padding: 12px; border: 1px solid #cad6c9; border-radius: 10px; color: var(--portal-ink); background: white; font: inherit; }
-.authForm input:disabled { color: #8a948e; background: #f2f4f0; }
-.authDisabledButton { min-height: 48px; margin-top: 5px; border: 0; border-radius: 12px; color: #6f776f; background: #e8ece6; font-size: 14px; font-weight: 850; cursor: not-allowed; }
-.authHelp { margin: 16px 0 0; color: #6c724e; font-size: 12px; line-height: 1.55; }
-.tokenBox { margin-top: 19px; padding: 14px; border: 1px solid #e3d789; border-radius: 13px; color: #544e28; background: #fffbe2; font-size: 12px; line-height: 1.55; }
-.boundaryLoginLink { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: 16px; border-radius: 12px; color: #123a2d; background: var(--portal-lime); font-size: 14px; font-weight: 850; text-decoration: none; }
+.authForm label { display: grid; gap: 7px; color: var(--color-text-primary); font-size: 12px; font-weight: 800; }
+.authForm input { width: 100%; min-height: 47px; padding: 12px; border: 1px solid var(--color-border-strong); border-radius: 10px; color: var(--portal-ink); background: var(--color-page); font: inherit; }
+.authForm input:disabled { color: var(--color-text-disabled); background: var(--color-surface-disabled); }
+.authDisabledButton { min-height: 48px; margin-top: 5px; border: 0; border-radius: 12px; color: var(--color-text-disabled); background: var(--color-action-disabled); font-size: 14px; font-weight: 850; cursor: not-allowed; }
+.authHelp { margin: 16px 0 0; color: var(--color-state-notice-text); font-size: 12px; line-height: 1.55; }
+.tokenBox { margin-top: 19px; padding: 14px; border: 1px solid var(--color-state-notice-border); border-radius: 13px; color: var(--color-state-notice-text); background: var(--color-state-notice-background); font-size: 12px; line-height: 1.55; }
+.boundaryLoginLink { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: 16px; border-radius: 12px; color: var(--color-action-text); background: var(--color-action-primary); font-size: 14px; font-weight: 850; text-decoration: none; }
 
 @media (min-width: 720px) {
   .portal { padding: 28px 28px 70px; }
