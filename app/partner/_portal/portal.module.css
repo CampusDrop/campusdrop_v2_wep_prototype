@@ -7,7 +7,7 @@
   --portal-green: var(--color-action-primary);
   --portal-lime: var(--color-brand-soft);
   min-height: 100svh;
-  padding: 18px 16px 46px;
+  padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(46px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
   color: var(--portal-ink);
   background: var(--portal-ground);
 }
@@ -15,7 +15,7 @@
 .shell { width: min(100%, 960px); margin: 0 auto; }
 
 .header { display: flex; align-items: center; justify-content: space-between; min-height: 50px; }
-.brand { display: inline-flex; align-items: center; gap: 8px; color: var(--portal-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; color: var(--portal-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
 .brandMark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; color: var(--color-action-text); background: var(--portal-green); font-size: 15px; font-weight: 900; }
 .portalLabel { color: var(--portal-muted); font-size: 12px; font-weight: 750; }
 
@@ -24,7 +24,7 @@
 
 .nav { display: flex; gap: 6px; margin: 0 -16px; padding: 0 16px 3px; overflow-x: auto; border-bottom: 1px solid var(--portal-line); scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
-.navLink, .activeNavLink { flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--portal-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
+.navLink, .activeNavLink { display: inline-flex; align-items: center; min-height: 44px; flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--portal-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
 .activeNavLink { border-bottom-color: var(--portal-green); color: var(--portal-green); }
 .navLink:focus-visible, .activeNavLink:focus-visible, .brand:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 
@@ -44,7 +44,7 @@
 .section { margin-top: 30px; }
 .sectionHeader { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
 .sectionHeader h2 { margin: 0; font-size: 19px; letter-spacing: -.05em; }
-.sectionHeader a { color: var(--portal-green); font-size: 12px; font-weight: 800; text-decoration: none; }
+.sectionHeader a { display: inline-flex; align-items: center; min-height: 44px; color: var(--portal-green); font-size: 12px; font-weight: 800; text-decoration: none; }
 
 .panel, .listItem { border: 1px solid var(--portal-line); border-radius: 17px; background: var(--portal-surface); }
 .panel { padding: 16px; }
@@ -70,18 +70,18 @@
 
 .proposalType { margin: 0 0 8px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .08em; }
 .proposalActions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
-.acceptButton, .rejectButton { min-height: 43px; border: 0; border-radius: 11px; font-size: 13px; font-weight: 850; }
+.acceptButton, .rejectButton { min-height: 44px; border: 0; border-radius: 11px; font-size: 13px; font-weight: 850; }
 .acceptButton { color: var(--color-action-text); background: var(--color-action-primary); }
 .rejectButton { color: var(--color-state-danger-text); background: var(--color-state-danger-background); }
 .acceptButton:disabled, .rejectButton:disabled { cursor: not-allowed; opacity: .72; }
 .actionNote { margin: 11px 1px 0; color: var(--color-state-notice-text); font-size: 11px; line-height: 1.5; }
 
-.authPage { min-height: 100svh; padding: 22px 16px 44px; color: var(--portal-ink); background: var(--portal-ground); }
+.authPage { --portal-ink: var(--color-text-primary); --portal-muted: var(--color-text-secondary); --portal-surface: var(--color-page); --portal-ground: var(--color-surface-subtle); --portal-line: var(--color-border-default); --portal-green: var(--color-action-primary); min-height: 100svh; padding: max(22px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(44px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); color: var(--portal-ink); background: var(--portal-ground); }
 .authShell { width: min(100%, 480px); margin: 0 auto; }
-.backLink { display: inline-flex; padding: 9px 0; color: var(--portal-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
+.backLink { display: inline-flex; align-items: center; min-height: 44px; padding: 9px 0; color: var(--portal-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
 .authCard { margin-top: 58px; padding: 24px 19px; border: 1px solid var(--portal-line); border-radius: 22px; background: var(--portal-surface); box-shadow: 0 16px 35px var(--color-shadow-surface); }
 .authEyebrow { margin: 0 0 10px; color: var(--portal-green); font-size: 10px; font-weight: 900; letter-spacing: .13em; }
-.authCard h1 { margin: 0; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
+.authCard h1 { margin: 0; color: var(--portal-ink) !important; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
 .authCard > p:not(.authEyebrow) { margin: 13px 0 23px; color: var(--portal-muted); font-size: 14px; line-height: 1.6; }
 .authForm { display: grid; gap: 14px; }
 .authForm label { display: grid; gap: 7px; color: var(--color-text-primary); font-size: 12px; font-weight: 800; }
@@ -99,4 +99,20 @@
   .metricCard:first-child { grid-column: auto; }
   .couponList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .couponCard:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 360px) {
+  .portal { padding-right: max(14px, env(safe-area-inset-right)); padding-left: max(14px, env(safe-area-inset-left)); }
+  .nav { margin-right: -14px; margin-left: -14px; padding-right: 14px; padding-left: 14px; }
+  .header { gap: 8px; }
+  .brand { gap: 6px; font-size: 15px; }
+  .portalLabel { font-size: 11px; }
+  .pageHeading { padding-top: 25px; }
+  .pageHeading h1 { font-size: 29px; }
+  .metricGrid { grid-template-columns: 1fr; }
+  .metricCard:first-child { grid-column: auto; }
+  .couponTop, .itemMeta { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .couponMetrics { grid-template-columns: 1fr; gap: 10px; }
+  .couponMetrics > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .authCard { margin-top: 34px; padding: 21px 16px; }
 }

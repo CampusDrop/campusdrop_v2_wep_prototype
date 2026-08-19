@@ -19,3 +19,4 @@
 .policy li { padding-left: 2px; color: var(--color-text-inverse-muted); font-size: 13px; line-height: 1.58; }
 .emptyState { padding: 19px; border-style: dashed; background: var(--color-overlay-white-45); }
 @media (min-width: 720px) { .authoring { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } .integrationNotice, .policy, .emptyState { grid-column: 1 / -1; } }
+@media (max-width: 360px) { .integrationNotice, .section, .policy, .emptyState { padding: 16px; border-radius: 17px; } .rangeFields { grid-template-columns: 1fr; } }
