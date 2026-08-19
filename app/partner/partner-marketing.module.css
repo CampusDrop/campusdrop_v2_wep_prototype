@@ -7,7 +7,7 @@
   --gray-surface: var(--color-surface-subtle);
   --line: var(--color-border-default);
   min-height: 100svh;
-  overflow: hidden;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--color-page);
 }
@@ -19,7 +19,7 @@
   width: min(100%, 1180px);
   min-height: 76px;
   margin: 0 auto;
-  padding: 16px clamp(20px, 5vw, 72px);
+  padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right), 5vw) 16px max(20px, env(safe-area-inset-left), 5vw);
 }
 
 .wordmark {
@@ -279,7 +279,7 @@
 }
 
 @media (max-width: 480px) {
-  .header { padding-right: 16px; padding-left: 16px; }
+  .header { padding-right: max(16px, env(safe-area-inset-right)); padding-left: max(16px, env(safe-area-inset-left)); }
   .wordmark { font-size: 16px; }.wordmarkMark { width: 29px; height: 29px; border-radius: 9px; }
   .loginLink { padding: 8px 10px; font-size: 12px; white-space: nowrap; }
   .hero { margin-top: 48px; margin-bottom: 82px; padding-right: 16px; padding-left: 16px; }
@@ -318,4 +318,15 @@
   .closingActions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; margin-top: 28px; }
   .closingPrimary, .closingLogin { width: 100%; min-height: 54px; }
   .closingPrimary { border-radius: 14px; }
+}
+
+@media (max-width: 360px) {
+  .header { min-height: 68px; }
+  .wordmark { gap: 6px; font-size: 15px; }
+  .loginLink { padding-right: 8px; padding-left: 8px; }
+  .hero h1 { font-size: clamp(42px, 13.6vw, 48px); }
+  .benefitCopy { padding-right: 20px; padding-left: 20px; }
+  .assuranceCard { gap: 12px; padding: 20px; }
+  .requestRow { right: 16px; left: 16px; }
+  .choiceRow { right: 16px; left: 16px; }
 }

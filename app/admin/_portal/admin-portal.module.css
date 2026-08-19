@@ -7,19 +7,19 @@
   --admin-green: var(--color-action-primary);
   --admin-lime: var(--color-brand-soft);
   min-height: 100svh;
-  padding: 18px 16px 48px;
+  padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(48px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
   color: var(--admin-ink);
   background: var(--admin-ground);
 }
 
 .shell { width: min(100%, 1120px); margin: 0 auto; }
 .header { display: flex; align-items: center; justify-content: space-between; min-height: 50px; gap: 12px; }
-.brand { display: inline-flex; align-items: center; gap: 8px; color: var(--admin-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; color: var(--admin-ink); font-size: 17px; font-weight: 850; letter-spacing: -.04em; text-decoration: none; }
 .brandMark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; color: var(--color-action-text); background: var(--admin-green); font-size: 15px; font-weight: 900; }
 .portalLabel { color: var(--admin-muted); font-size: 12px; font-weight: 750; white-space: nowrap; }
 .nav { display: flex; gap: 6px; margin: 17px -16px 0; padding: 0 16px 3px; overflow-x: auto; border-bottom: 1px solid var(--admin-line); scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
-.navLink, .activeNavLink { flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--admin-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
+.navLink, .activeNavLink { display: inline-flex; align-items: center; min-height: 44px; flex: 0 0 auto; padding: 11px 12px; border-bottom: 2px solid transparent; color: var(--admin-muted); font-size: 13px; font-weight: 750; text-decoration: none; }
 .activeNavLink { border-bottom-color: var(--admin-green); color: var(--admin-green); }
 .heading { padding: 31px 0 23px; }
 .heading p { margin: 0 0 8px; color: var(--admin-green); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
@@ -36,12 +36,12 @@
 .section { margin-top: 29px; }
 .section h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -.05em; }
 .emptyPanel { padding: 17px; border: 1px dashed var(--color-border-strong); border-radius: 17px; color: var(--admin-muted); background: var(--color-overlay-white-55); font-size: 13px; line-height: 1.55; }
-.authPage { min-height: 100svh; padding: 22px 16px 44px; color: var(--admin-ink); background: var(--admin-ground); }
+.authPage { --admin-ink: var(--color-text-primary); --admin-muted: var(--color-text-secondary); --admin-ground: var(--color-surface-subtle); --admin-surface: var(--color-page); --admin-line: var(--color-border-default); --admin-green: var(--color-action-primary); min-height: 100svh; padding: max(22px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(44px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); color: var(--admin-ink); background: var(--admin-ground); }
 .authShell { width: min(100%, 480px); margin: 0 auto; }
-.backLink { display: inline-flex; padding: 9px 0; color: var(--admin-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
+.backLink { display: inline-flex; align-items: center; min-height: 44px; padding: 9px 0; color: var(--admin-muted); font-size: 13px; font-weight: 700; text-decoration: none; }
 .authCard { margin-top: 58px; padding: 24px 19px; border: 1px solid var(--admin-line); border-radius: 22px; background: var(--admin-surface); box-shadow: 0 16px 35px var(--color-shadow-surface); }
 .eyebrow { margin: 0 0 10px; color: var(--admin-green); font-size: 10px; font-weight: 900; letter-spacing: .13em; }
-.authCard h1 { margin: 0; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
+.authCard h1 { margin: 0; color: var(--admin-ink) !important; font-size: 31px; letter-spacing: -.07em; line-height: 1.08; }
 .authCard > p:not(.eyebrow) { margin: 13px 0 0; color: var(--admin-muted); font-size: 14px; line-height: 1.6; }
 .loginForm { display: grid; gap: 14px; margin-top: 22px; }
 .loginForm label { display: grid; gap: 7px; color: var(--color-text-primary); font-size: 12px; font-weight: 800; }
@@ -55,4 +55,17 @@
   .nav { margin: 17px 0 0; padding: 0 0 3px; }
   .cardGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .placeholderCard:first-child { grid-column: auto; }
+}
+
+@media (max-width: 360px) {
+  .portal { padding-right: max(14px, env(safe-area-inset-right)); padding-left: max(14px, env(safe-area-inset-left)); }
+  .header { gap: 8px; }
+  .brand { gap: 6px; font-size: 15px; }
+  .portalLabel { font-size: 11px; }
+  .nav { margin-right: -14px; margin-left: -14px; padding-right: 14px; padding-left: 14px; }
+  .heading { padding-top: 25px; }
+  .heading h1 { font-size: 29px; }
+  .cardGrid { grid-template-columns: 1fr; }
+  .placeholderCard:first-child { grid-column: auto; }
+  .authCard { margin-top: 34px; padding: 21px 16px; }
 }

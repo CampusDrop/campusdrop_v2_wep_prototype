@@ -1,0 +1,60 @@
+/*
+ * Compact-screen guardrails for the public landing and the gated editor.
+ * These selectors are intentionally scoped away from the full-screen game.
+ */
+@media (max-width: 360px) {
+  .landing-page {
+    padding-right: max(14px, env(safe-area-inset-right));
+    padding-left: max(14px, env(safe-area-inset-left));
+  }
+
+  .landing-nav a {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 11px;
+  }
+
+  .landing-nav a:last-child {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .landing-hero h1 {
+    font-size: clamp(38px, 12.3vw, 44px);
+  }
+
+  .landing-principles,
+  .landing-partner-callout {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .editor-shell {
+    padding-right: max(14px, env(safe-area-inset-right));
+    padding-left: max(14px, env(safe-area-inset-left));
+  }
+
+  .editor-progress,
+  .editor-panel,
+  .editor-summary {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .editor-header h1 {
+    font-size: 32px;
+  }
+
+  .editor-step-title {
+    gap: 10px;
+  }
+
+  .editor-step-title h2 {
+    font-size: 18px;
+  }
+
+  .participant-range,
+  .capture-tools {
+    grid-template-columns: 1fr;
+  }
+}
